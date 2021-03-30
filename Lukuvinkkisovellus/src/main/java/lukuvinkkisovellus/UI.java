@@ -30,7 +30,7 @@ public class UI {
         while (true) {
             System.out.println("1 (lisää lukuvinkki) ja 2 (listaa lukuvinkit), tyhjä lopettaa");
             String komento = reader.nextLine();
-            if (komento.equals("")) {
+            if (komento.equals("") || komento.equals(" ")) {
                 break;
             }
             if (Integer.parseInt(komento) == 1) {
