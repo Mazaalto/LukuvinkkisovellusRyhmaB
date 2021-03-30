@@ -34,10 +34,14 @@ public class UI {
                 break;
             }
             if (Integer.parseInt(komento) == 1) {
+                //Tähän toteutetaan lisääminen
                 System.out.println("Lisätään lukuvinkki");
             }
             if (Integer.parseInt(komento) == 2) {
+                //tähän toteutetaan kaikkien lukuvinkkien tulostus
                 System.out.println("Listataan lukuvinkit");
+            } else {
+                System.out.println("Epäkelpo komento. Syötä komento uudelleen");
             }
             
         }
