@@ -33,6 +33,12 @@ public class UI {
             if (komento.equals("")) {
                 break;
             }
+            if (Integer.parseInt(komento) == 1) {
+                System.out.println("Lisätään lukuvinkki");
+            }
+            if (Integer.parseInt(komento) == 2) {
+                System.out.println("Listataan lukuvinkit");
+            }
             
         }
 
