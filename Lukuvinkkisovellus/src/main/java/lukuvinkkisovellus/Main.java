@@ -1,7 +1,12 @@
 package lukuvinkkisovellus;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Testing");
+        Scanner reader = new Scanner(System.in);
+
+        UI kayttis = new UI(reader);
+        kayttis.start();
     }
 }
