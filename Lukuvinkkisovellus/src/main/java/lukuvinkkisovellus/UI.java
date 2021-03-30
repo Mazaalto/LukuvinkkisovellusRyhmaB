@@ -27,6 +27,14 @@ public class UI {
 
     private void printCommands() {
         System.out.println("Valitse allaolevista komennoista numero ja paina enter");
+        while (true) {
+            System.out.println("1 (lisää lukuvinkki) ja 2 (listaa lukuvinkit), tyhjä lopettaa");
+            String komento = reader.nextLine();
+            if (komento.equals("")) {
+                break;
+            }
+            
+        }
 
     }
 }
