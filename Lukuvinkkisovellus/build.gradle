@@ -12,7 +12,7 @@ dependencies {
 }
 
 application {
-    mainClass = 'ohtu.Main'
+    mainClass = 'lukuvinkkisovellus.Main'
 }
 
 run{
