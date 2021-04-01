@@ -36,6 +36,7 @@ public class UI {
             if (Integer.parseInt(komento) == 1) {
                 //Tähän toteutetaan lisääminen
                 System.out.println("Lisätään lukuvinkki");
+                continue;
             }
             if (Integer.parseInt(komento) == 2) {
                 //tähän toteutetaan kaikkien lukuvinkkien tulostus
