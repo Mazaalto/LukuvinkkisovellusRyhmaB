@@ -24,13 +24,13 @@ public class UI {
         this.lukuvinkkiService = new LukuvinkkiService(lukuvinkkiDao);
     }
 
-    public void start() {
+    public void start() throws Exception {
         System.out.println("Tervetuloa lukuvinkkisovellukseen!");
         printCommands();
 
     }
 
-    private void printCommands() {
+    private void printCommands() throws Exception {
         System.out.println("Valitse allaolevista komennoista numero ja paina enter");
         while (true) {
             System.out.println("1 (lisää lukuvinkki) ja 2 (listaa lukuvinkit), tyhjä lopettaa");
@@ -38,7 +38,7 @@ public class UI {
             if (komento.equals("") || komento.equals(" ")) {
                 break;
             }
-            if (Integer.parseInt(komento) == 1) {
+            if (komento.equals("1")) {
                 //Tähän toteutetaan lisääminen
                 System.out.println("Lisätään lukuvinkki");
                 System.out.println("Anna otsikko: ");
@@ -47,7 +47,7 @@ public class UI {
                 String url = reader.nextLine();
                 lukuvinkkiService.lisaaLukuvinkki(new Lukuvinkki(otsikko, url));
             }
-            if (Integer.parseInt(komento) == 2) {
+            if (komento.equals("2")) {
                 //tähän toteutetaan kaikkien lukuvinkkien tulostus
                 System.out.println("Listataan lukuvinkit");
                 lukuvinkkiService.listaaKaikki();
