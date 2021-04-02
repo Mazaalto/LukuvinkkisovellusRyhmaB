@@ -12,7 +12,7 @@ public class Lukuvinkki {
 
     @Override
     public String toString() {
-        return "Lukuvinkki{" + "otiskko=" + otsikko + ", url=" + url + '}';
+        return "Lukuvinkki: "  + otsikko + " " + url;
     }
     
 
