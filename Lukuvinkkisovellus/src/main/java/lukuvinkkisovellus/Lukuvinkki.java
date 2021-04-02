@@ -10,4 +10,10 @@ public class Lukuvinkki {
         this.url = url;
     }
 
+    @Override
+    public String toString() {
+        return "Lukuvinkki{" + "otiskko=" + otiskko + ", url=" + url + '}';
+    }
+    
+
 }
