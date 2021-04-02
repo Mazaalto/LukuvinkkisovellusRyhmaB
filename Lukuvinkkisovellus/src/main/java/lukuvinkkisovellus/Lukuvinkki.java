@@ -18,6 +18,11 @@ public class Lukuvinkki {
         return url;
     }
     
+    @Override
+    public String toString() {
+        return "Lukuvinkki: "  + otsikko + " " + url;
+    }
+
     
 
 }
