@@ -15,7 +15,7 @@ public class LukuvinkkiService {
     public void listaaKaikki() {
         this.lukuvinkkiDao.listaaKaikki().stream().forEach(lv -> System.out.println(lv));  
     }
-    public void lisaaLukuvinkki(Lukuvinkki lukuvinkki) {
+    public void lisaaLukuvinkki(Lukuvinkki lukuvinkki) throws Exception {
         this.lukuvinkkiDao.lisaa(lukuvinkki);
     }
     

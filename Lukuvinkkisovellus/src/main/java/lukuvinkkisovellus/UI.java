@@ -14,7 +14,7 @@ public class UI {
     private Scanner reader;
     private LukuvinkkiService lukuvinkkiService;
 
-    public UI(Scanner reader) throws FileNotFoundException, IOException {
+    public UI(Scanner reader) throws FileNotFoundException, IOException, Exception {
         Properties properties = new Properties();  
         properties.load(new FileInputStream("config.properties"));
         String lukuvinkkiTiedosto = properties.getProperty("lukuvinkkiTiedosto");

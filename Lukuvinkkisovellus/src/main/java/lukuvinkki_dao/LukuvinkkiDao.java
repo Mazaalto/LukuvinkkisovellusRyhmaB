@@ -7,5 +7,5 @@ public interface LukuvinkkiDao {
 
     List<Lukuvinkki> listaaKaikki();
 
-    void lisaa(Lukuvinkki lukuvinkki);
+    void lisaa(Lukuvinkki lukuvinkki) throws Exception;
 }

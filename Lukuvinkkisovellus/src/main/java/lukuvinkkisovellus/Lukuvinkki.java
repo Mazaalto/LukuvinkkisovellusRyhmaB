@@ -10,10 +10,19 @@ public class Lukuvinkki {
         this.url = url;
     }
 
+    public String getOtsikko() {
+        return otsikko;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+    
     @Override
     public String toString() {
         return "Lukuvinkki: "  + otsikko + " " + url;
     }
+
     
 
 }
