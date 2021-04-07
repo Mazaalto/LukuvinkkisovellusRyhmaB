@@ -38,7 +38,7 @@ public class UI {
             if (komento.equals("") || komento.equals(" ")) {
                 break;
             }
-            if (komento.equals("1")) {
+            else if (komento.equals("1")) {
                 //Tähän toteutetaan lisääminen
                 System.out.println("Lisätään lukuvinkki");
                 System.out.println("Anna otsikko: ");
@@ -47,7 +47,7 @@ public class UI {
                 String url = reader.nextLine();
                 lukuvinkkiService.lisaaLukuvinkki(new Lukuvinkki(otsikko, url));
             }
-            if (komento.equals("2")) {
+            else if (komento.equals("2")) {
                 //tähän toteutetaan kaikkien lukuvinkkien tulostus
                 System.out.println("Listataan lukuvinkit");
                 lukuvinkkiService.listaaKaikki();

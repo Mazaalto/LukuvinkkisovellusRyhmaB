@@ -43,8 +43,15 @@ public class TallennusDao implements LukuvinkkiDao{
         try (FileWriter kirjoittaja = new FileWriter(new File(lukuvinkkiTiedosto))) {
             for (Lukuvinkki vinkki: lukuvinkit) {
                 kirjoittaja.write(vinkki.getOtsikko() + ";" + vinkki.getUrl() + "\n");
-            }           
+            }   
+            System.out.println("Tallennus onnistui!");
+           
         } 
+    }
+
+    @Override
+    public int LukuvinkkienMaara() {
+       return lukuvinkit.size();
     }
     
 }
