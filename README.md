@@ -17,11 +17,15 @@ Jos haluat antaa repositoriolle oman nimen niin syötä komennon perään välil
 
 ## Käyttöohje
 
-Mene terminaalissa repositorion kopiosi hakemistoon Lukuvinkkisovellus ja aja komento käynnistä sovellus komennolla
+Mene terminaalissa repositorion kopiosi hakemistoon Lukuvinkkisovellus ja käynnistä sovellus komennolla
 ```
 ./gradlew run
 ```
 
-Sovellusta käytetään tekstikäyttöliittymän avulla terminaalista. Sovellukseen voi tallentaa lukuvinkkejä ja tallennetut lukuvinkit voi nähdä listana. Sovelluksen käynnistämisen jälkeen sovellus listaa mahdolliset komennot ja pyytää valitsemaan niistä tai lopettamaan sovelluksen käytön. Jos valitaan komennoksi lukuvinkin lisääminen niin sovellus pyytää ensin syöttämään otsikon ja sitten lukuvinkin url-osoitteen. Jos komennoksi valitaan lukuvinkkien listaaminen niin terminaaliin tulostuu jokainen tallennettu lukuvinkki omalle rivilleen, otsikko ensin ja sitten lukuvinkin url-osoite. Sovelluksen käyttämisen voi lopettaa antamalla tyhjän syötteen eli painamalla enter.
+Sovellusta käytetään tekstikäyttöliittymän avulla terminaalista. Sovellukseen voi tallentaa lukuvinkkejä ja tallennetut lukuvinkit voi nähdä listana. Sovelluksen käynnistämisen jälkeen sovellus listaa mahdolliset komennot ja pyytää valitsemaan niistä tai lopettamaan sovelluksen käytön. Jos komennoksi valitaan lukuvinkin lisääminen niin sovellus pyytää ensin syöttämään otsikon ja sitten lukuvinkin url-osoitteen. Jos komennoksi valitaan lukuvinkkien listaaminen niin terminaaliin tulostuu jokainen tallennettu lukuvinkki omalle rivilleen, otsikko ensin ja sitten lukuvinkin url-osoite. Sovelluksen käyttämisen voi lopettaa antamalla tyhjän syötteen eli painamalla enter.
 
 Lukuvinkit pysyvät tallessa vaikka suljet sovelluksen.
+
+## Definition of Done
+
+
