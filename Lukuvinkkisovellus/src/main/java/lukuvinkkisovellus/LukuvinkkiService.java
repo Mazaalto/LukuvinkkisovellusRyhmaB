@@ -15,8 +15,7 @@ public class LukuvinkkiService {
     public List listaaKaikki() {   
         
         return this.lukuvinkkiDao.listaaKaikki();
-               
-        
+                      
     }
     public void lisaaLukuvinkki(Lukuvinkki lukuvinkki) throws Exception {
         this.lukuvinkkiDao.lisaa(lukuvinkki);
