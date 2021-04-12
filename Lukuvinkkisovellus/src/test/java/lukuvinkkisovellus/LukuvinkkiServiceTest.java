@@ -43,7 +43,7 @@ public class LukuvinkkiServiceTest {
     public void LukuvinkkienListausOnnistuu() throws Exception {
         lukuvinkkiService.lisaaLukuvinkki(new Lukuvinkki("otsikko1", "testiurl.com"));
         lukuvinkkiService.lisaaLukuvinkki(new Lukuvinkki("otsikko2", "testiurl2.com"));                
-        assertTrue(lukuvinkkiDao.listaaKaikki().toString().contains("Vinkin otsikko: otsikko2, vinkin linkki: testiurl2.com"));
+        assertTrue(lukuvinkkiService.listaaKaikki().toString().contains("Vinkin otsikko: otsikko2, vinkin linkki: testiurl2.com"));
     }
     
 }
