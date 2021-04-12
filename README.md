@@ -17,7 +17,7 @@ Jos haluat antaa repositoriolle oman nimen niin syötä komennon perään välil
 
 ## Käyttöohje
 
-Mene terminaalissa repositorion kopiosi hakemistoon Lukuvinkkisovellus ja käynnistä sovellus komennolla
+Mene terminaalissa repositorion kopiosi hakemistoon LukuvinkkisovellusryhmaB/Lukuvinkkisovellus ja mene hakemistoon ja käynnistä sovellus komennolla
 ```
 ./gradlew run
 ```
@@ -26,6 +26,7 @@ Sovellusta käytetään tekstikäyttöliittymän avulla terminaalista. Sovelluks
 
 Lukuvinkit pysyvät tallessa vaikka suljet sovelluksen.
 
-## Definition of Done
+## Definition of done
+
 
 
