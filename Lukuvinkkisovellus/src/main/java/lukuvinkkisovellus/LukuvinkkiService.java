@@ -12,8 +12,15 @@ public class LukuvinkkiService {
         this.lukuvinkkiDao = lukuvinkkiDao;  
     }
     
-    public void listaaKaikki() {        
-        this.lukuvinkkiDao.listaaKaikki().stream().forEach(lv -> System.out.println(lv));  
+    public void listaaKaikki() {    
+        if (this.lukuvinkkiDao.listaaKaikki().isEmpty()) {
+            System.out.println("ei tallennettuja vinkkejä.");
+        } else {
+            this.lukuvinkkiDao.listaaKaikki().stream().forEach(lv -> System.out.println(lv)); 
+        }
+       
+        
+        
     }
     public void lisaaLukuvinkki(Lukuvinkki lukuvinkki) throws Exception {
         this.lukuvinkkiDao.lisaa(lukuvinkki);

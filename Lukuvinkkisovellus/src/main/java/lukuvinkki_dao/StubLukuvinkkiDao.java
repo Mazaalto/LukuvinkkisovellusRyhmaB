@@ -15,7 +15,7 @@ import lukuvinkkisovellus.Lukuvinkki;
  */
 public class StubLukuvinkkiDao implements LukuvinkkiDao {
 
-    List<Lukuvinkki> lukuvinkit;
+    ArrayList<Lukuvinkki> lukuvinkit;
 
     public StubLukuvinkkiDao() {
         this.lukuvinkit = new ArrayList<Lukuvinkki>();        
@@ -24,7 +24,7 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
     
     
     @Override
-    public List<Lukuvinkki> listaaKaikki() {
+    public ArrayList<Lukuvinkki> listaaKaikki() {
         return lukuvinkit;
     }
 
