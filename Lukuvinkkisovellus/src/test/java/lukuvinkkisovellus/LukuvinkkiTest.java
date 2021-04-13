@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class lukuvinkkiTest {
+public class LukuvinkkiTest {
     LukuvinkkiService lukuvinkkiService;
     LukuvinkkiDao lukuvinkkiDao;
        

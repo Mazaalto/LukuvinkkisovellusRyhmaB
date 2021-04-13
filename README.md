@@ -17,7 +17,7 @@ Jos haluat antaa repositoriolle oman nimen niin syötä komennon perään välil
 
 ## Käyttöohje
 
-Mene terminaalissa repositorion kopiosi hakemistoon Lukuvinkkisovellus ja käynnistä sovellus komennolla
+Mene terminaalissa repositorion kopiosi hakemistoon LukuvinkkisovellusryhmaB/Lukuvinkkisovellus ja mene hakemistoon ja käynnistä sovellus komennolla
 ```
 ./gradlew run
 ```
@@ -26,6 +26,11 @@ Sovellusta käytetään tekstikäyttöliittymän avulla terminaalista. Sovelluks
 
 Lukuvinkit pysyvät tallessa vaikka suljet sovelluksen.
 
-## Definition of Done
+## Definition of done
 
+- Testikattavuus yksikkötestien osalta on vähintään 80 % ominaisuuksien testaamiseen, eli esimerkiksi gettereitä ja settereitä ei testata. 
+- User Storyjen definition of done on dokumentoitu Cucumberin fetureiksi, ne löytyvät [täältä](https://github.com/Mazaalto/LukuvinkkisovellusRyhmaB/blob/main/Lukuvinkkisovellus/src/test/resources/lukuvinkkisovellus/lisaysJaPoisto.feature) 
+- Koodi on selkeää ja helppolukuista
+- Luokat, metodit ja muuttujat ovat nimetty kuvaavasti
+- Asiakas voi seurata testikattavuutta ja koodin tilannetta Github Actionin avulla
 
