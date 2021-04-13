@@ -34,7 +34,7 @@ public class UI {
     private void printCommands() throws Exception {
         System.out.println("Valitse allaolevista komennoista numero ja paina enter");
         while (true) {
-            System.out.println("1 (lisää lukuvinkki) ja 2 (listaa lukuvinkit), tyhjä lopettaa");
+            System.out.println("1 (lisää lukuvinkki), 2 (listaa lukuvinkit), 3 (poista lukuvinkki), tyhjä lopettaa");
             String komento = reader.nextLine();
             if (komento.equals("") || komento.equals(" ")) {
                 break;
@@ -55,6 +55,39 @@ public class UI {
                 } else {
                     System.out.println("Listataan lukuvinkit");
                     lukuvinkit.stream().forEach(lv -> System.out.println(lv));
+                }
+            } else if (komento.equals("3")) {
+                //tähän toteutetaan kaikkien lukuvinkkien poistaminen
+                List<Lukuvinkki> lukuvinkit = lukuvinkkiService.listaaKaikki();
+
+                if (lukuvinkit.isEmpty()) {
+                    System.out.println("Ei vielä yhtään lukuvinkkiä");
+                } else {
+                    System.out.println("Lukuvinkit tällä hetkellä:");
+                    
+                    lukuvinkit.stream().forEach(lv -> System.out.println(lv));
+                    System.out.println("Anna otsikko, jonka haluat poistaa:");
+                    String otsikko = reader.nextLine();
+                    lukuvinkit = lukuvinkkiService.listaaOtsikonPerusteella(otsikko);
+                    
+                    lukuvinkit.stream().forEach(lv -> System.out.println(lv));
+                    if (lukuvinkit.size() == 1) {
+                        System.out.println("Poistetaanko: " + lukuvinkit.get(0).toString());
+                        System.out.println("1 poistaa, 2 ei poista");
+                        if (reader.nextLine().equals("1")) {
+                            //tässä poistetaan kyseinen rivi, ei vielä toteutettu
+                        }
+                    }
+                    if (lukuvinkit.size() > 1) {
+                        for (int i = 0; i < lukuvinkit.size(); i++) {
+                            System.out.println("Poistetaanko: " + lukuvinkit.get(i).toString());
+                            System.out.println("1 poistaa, 2 ei poista");
+                            if (reader.nextLine().equals("1")) {
+                                //tässä poistetaan kyseinen rivi, ei vielä toteutettu
+                            }
+                        }
+
+                    }
                 }
 
             } else {
