@@ -7,12 +7,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import lukuvinkkisovellus.Lukuvinkki;
+import java.sql.*;
 
 public class TallennusDao implements LukuvinkkiDao{
     private List<Lukuvinkki> lukuvinkit;
     private String lukuvinkkiTiedosto;
     
     public TallennusDao(String tiedosto) throws Exception {
+        //Tietokannan luonti
+        try {
+            Connection db = DriverManager.getConnection("jdbc:sqlite:lukuvinkkisovellus.db");
+            Statement s = db.createStatement();
+            System.out.println("Yhdistäminen tietokantaan onnistui!");
+            
+            s.execute("CREATE TABLE IF NOT EXISTS Linkit (id INTEGER PRIMARY KEY, otsikko TEXT, url TEXT)");
+            s.execute("CREATE TABLE IF NOT EXISTS Kirjat (id INTEGER PRIMARY KEY, otsikko TEXT, kirjailija TEXT, julkaisuvuosi INTEGER, julkaisija TEXT, url TEXT)");
+            //Tämä on tässä vain esimerkin vuoksi
+            s.execute("INSERT INTO Linkit (otsikko,url) VALUES ('testilinkki','www.url.com')");
+       /*     
+       Tässä tulostusesimerkki
+        ResultSet r = s.executeQuery("SELECT * FROM Linkit");
+        while (r.next()) {
+            System.out.println(r.getInt("id")+" "+r.getString("otsikko")+" "+r.getInt("url"));
+        }
+        */
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());  
+        }
+        
+        
         lukuvinkit = new ArrayList<>();
         lukuvinkkiTiedosto = tiedosto;
         try {
