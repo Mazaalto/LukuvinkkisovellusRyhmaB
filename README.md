@@ -28,5 +28,9 @@ Lukuvinkit pysyvät tallessa vaikka suljet sovelluksen.
 
 ## Definition of done
 
-
+- Testikattavuus yksikkötestien osalta on vähintään 70 % ominaisuuksien testaamiseen, eli esimerkiksi gettereitä ja settereitä ei testata. 
+- User Storyjen definition of done on dokumentoitu Cucumberin fetureiksi, ne löytyvät [täältä](https://github.com/Mazaalto/LukuvinkkisovellusRyhmaB/blob/main/Lukuvinkkisovellus/src/test/resources/lukuvinkkisovellus/lisaysJaPoisto.feature) 
+- Koodi on selkeää ja helppolukuista
+- Luokat, metodit ja muuttujat ovat nimetty kuvaavasti
+- Asiakas voi seurata testikattavuutta ja koodin tilannetta Github Actionin avulla
 
