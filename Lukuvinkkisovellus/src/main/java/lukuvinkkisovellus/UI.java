@@ -21,7 +21,7 @@ public class UI {
         String lukuvinkkiTiedosto = properties.getProperty("lukuvinkkiTiedosto");
 
         this.reader = reader;
-        LukuvinkkiDao lukuvinkkiDao = new TallennusDao(lukuvinkkiTiedosto);
+        LukuvinkkiDao lukuvinkkiDao = new TallennusDao("jdbc:sqlite:lukuvinkkisovellus.db");
         this.lukuvinkkiService = new LukuvinkkiService(lukuvinkkiDao);
     }
 
@@ -34,7 +34,7 @@ public class UI {
     private void printCommands() throws Exception {
         System.out.println("Valitse allaolevista komennoista numero ja paina enter");
         while (true) {
-            System.out.println("1 (lisää lukuvinkki), 2 (listaa lukuvinkit), 3 (poista lukuvinkki), tyhjä lopettaa");
+            System.out.println("1 (lisää lukuvinkki), 2 (listaa lukuvinkit), 3 (poista lukuvinkki), 4 (kerro vinkkien määrä), tyhjä lopettaa");
             String komento = reader.nextLine();
             if (komento.equals("") || komento.equals(" ")) {
                 break;
@@ -64,12 +64,12 @@ public class UI {
                     System.out.println("Ei vielä yhtään lukuvinkkiä");
                 } else {
                     System.out.println("Lukuvinkit tällä hetkellä:");
-                    
+
                     lukuvinkit.stream().forEach(lv -> System.out.println(lv));
                     System.out.println("Anna otsikko, jonka haluat poistaa:");
                     String otsikko = reader.nextLine();
                     lukuvinkit = lukuvinkkiService.listaaOtsikonPerusteella(otsikko);
-                    
+
                     lukuvinkit.stream().forEach(lv -> System.out.println(lv));
                     if (lukuvinkit.size() == 1) {
                         System.out.println("Poistetaanko: " + lukuvinkit.get(0).toString());
@@ -89,6 +89,9 @@ public class UI {
 
                     }
                 }
+
+            } else if (komento.equals("4")) {
+                System.out.println(lukuvinkkiService.getLukuvinkkienMaara());
 
             } else {
                 System.out.println("Epäkelpo komento. Syötä komento uudelleen");

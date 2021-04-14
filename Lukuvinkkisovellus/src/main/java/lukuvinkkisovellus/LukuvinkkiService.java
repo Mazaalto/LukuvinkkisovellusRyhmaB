@@ -31,4 +31,7 @@ public class LukuvinkkiService {
         }
         return lukuvinkit;
     }
+    public int getLukuvinkkienMaara() {
+        return this.lukuvinkkiDao.LukuvinkkienMaara();
+    }
 }
