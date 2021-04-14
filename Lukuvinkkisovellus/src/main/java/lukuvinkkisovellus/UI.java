@@ -68,6 +68,8 @@ public class UI {
                     lukuvinkit.stream().forEach(lv -> System.out.println(lv));
                     System.out.println("Anna otsikko, jonka haluat poistaa:");
                     String otsikko = reader.nextLine();
+                    
+      
                     lukuvinkit = lukuvinkkiService.listaaOtsikonPerusteella(otsikko);
 
                     lukuvinkit.stream().forEach(lv -> System.out.println(lv));
@@ -75,7 +77,7 @@ public class UI {
                         System.out.println("Poistetaanko: " + lukuvinkit.get(0).toString());
                         System.out.println("1 poistaa, 2 ei poista");
                         if (reader.nextLine().equals("1")) {
-                            //tässä poistetaan kyseinen rivi, ei vielä toteutettu
+                            lukuvinkkiService.poistaLukuvinkki(lukuvinkit.get(0));
                         }
                     }
                     if (lukuvinkit.size() > 1) {
@@ -83,7 +85,7 @@ public class UI {
                             System.out.println("Poistetaanko: " + lukuvinkit.get(i).toString());
                             System.out.println("1 poistaa, 2 ei poista");
                             if (reader.nextLine().equals("1")) {
-                                //tässä poistetaan kyseinen rivi, ei vielä toteutettu
+                                lukuvinkkiService.poistaLukuvinkki(lukuvinkit.get(i));
                             }
                         }
 

@@ -10,4 +10,6 @@ public interface LukuvinkkiDao {
     void lisaa(Lukuvinkki lukuvinkki) throws Exception;
     
     int LukuvinkkienMaara();
+    
+    void poista(Lukuvinkki lukuvinkki) throws Exception;
 }

@@ -37,5 +37,11 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
     public int LukuvinkkienMaara() {
         return lukuvinkit.size();
     }
+
+ 
+    @Override
+    public void poista(Lukuvinkki lukuvinkki) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

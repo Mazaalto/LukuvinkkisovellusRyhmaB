@@ -104,4 +104,16 @@ public class TallennusDao implements LukuvinkkiDao {
         return vinkkienMaara;
     }
 
+    @Override
+    public void poista(Lukuvinkki lukuvinkki) throws Exception {
+        Connection db = DriverManager.getConnection(tietokantaosoite);
+        PreparedStatement stmt = db.prepareStatement("DELETE FROM Linkit WHERE otsikko = ?");
+        
+        stmt.setString(1, lukuvinkki.getOtsikko());
+        stmt.execute();
+        db.close();
+        System.out.println("Lukuvinkki poistettu");
+        lukuvinkit.remove(lukuvinkki);
+    }
+
 }
