@@ -56,6 +56,7 @@ public class TallennusDao implements LukuvinkkiDao {
 // Tänne totetutetaan lukuvinkkien tallennus.
     @Override
     public List<Lukuvinkki> listaaKaikki() {
+        lukuvinkit.clear();
         try {
             Connection db = DriverManager.getConnection(tietokantaosoite);
             Statement s = db.createStatement();
