@@ -72,6 +72,9 @@ public class UI {
                     lukuvinkit = lukuvinkkiService.listaaOtsikonPerusteella(otsikko);
 
                     lukuvinkit.stream().forEach(lv -> System.out.println(lv));
+                    if (lukuvinkit.isEmpty()) {
+                        System.out.println("Hakusanasi ei vastannut yhtäkään otsikkoa ohjelmassa");
+                    }
                     if (lukuvinkit.size() == 1) {
                         System.out.println("Poistetaanko: " + lukuvinkit.get(0).toString());
                         System.out.println("1 poistaa, 2 ei poista");
@@ -81,7 +84,6 @@ public class UI {
                             if (reader.nextLine().equals("1")) {
                                 lukuvinkkiService.poistaLukuvinkki(lukuvinkit.get(0));
                             }
-
                         }
                     }
                     if (lukuvinkit.size() > 1) {
