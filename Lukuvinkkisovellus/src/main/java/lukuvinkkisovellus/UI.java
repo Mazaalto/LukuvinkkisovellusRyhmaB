@@ -57,7 +57,7 @@ public class UI {
                     lukuvinkit.stream().forEach(lv -> System.out.println(lv));
                 }
             } else if (komento.equals("3")) {
-                //tähän toteutetaan kaikkien lukuvinkkien poistaminen
+                //tähän toteutetaan lukuvinkkien poistaminen
                 List<Lukuvinkki> lukuvinkit = lukuvinkkiService.listaaKaikki();
 
                 if (lukuvinkit.isEmpty()) {
@@ -79,7 +79,7 @@ public class UI {
                         System.out.println("Poistetaanko: " + lukuvinkit.get(0).toString());
                         System.out.println("1 poistaa, 2 ei poista");
                         if (reader.nextLine().equals("1")) {
-                            System.out.println("Poistetaanko varmasti lukuvinkit.get(0).toString()");
+                            System.out.println("Poistetaanko varmasti " + lukuvinkit.get(0).toString());
                             System.out.println("1 poistaa, 2 ei poista");
                             if (reader.nextLine().equals("1")) {
                                 lukuvinkkiService.poistaLukuvinkki(lukuvinkit.get(0));
@@ -91,12 +91,29 @@ public class UI {
                             System.out.println("Poistetaanko: " + lukuvinkit.get(i).toString());
                             System.out.println("1 poistaa, 2 ei poista");
                             if (reader.nextLine().equals("1")) {
-                                System.out.println("Poistetaanko varmasti lukuvinkit.get(0).toString()");
-                                System.out.println("1 poistaa, 2 ei poista");
+                                System.out.println("Poistetaanko varmasti " + lukuvinkit.get(0).toString());
+                                System.out.println("1 poistaa, 2 ei poista ja voit tarkentaa hakusanaa");
                                 if (reader.nextLine().equals("1")) {
                                     lukuvinkkiService.poistaLukuvinkki(lukuvinkit.get(i));
                                 }
+                                if (reader.nextLine().equals("2")) {
+                                    System.out.println("Tarkenna hakusanaa, hakusana otsikolle:");
+                                    String otsikkotarkennus = reader.nextLine();
+                                    lukuvinkit = lukuvinkkiService.listaaOtsikonPerusteella(otsikkotarkennus);
+                                    for (int i2 = 0; i2 < lukuvinkit.size(); i2++) {
+                                        System.out.println("Poistetaanko: " + lukuvinkit.get(i2).toString());
+                                        System.out.println("1 poistaa, 2 ei poista");
+                                        if (reader.nextLine().equals("1")) {
+                                            System.out.println("Poistetaanko varmasti lukuvinkit.get(0).toString()");
+                                            System.out.println("1 poistaa, 2 ei poista");
+                                            if (reader.nextLine().equals("1")) {
+                                                lukuvinkkiService.poistaLukuvinkki(lukuvinkit.get(i2));
+                                            }
+                                        }
+                                    }
+                                }
                             }
+
                         }
                     }
                 }
@@ -107,8 +124,6 @@ public class UI {
             } else {
                 System.out.println("Epäkelpo komento. Syötä komento uudelleen");
             }
-
         }
-
     }
 }
