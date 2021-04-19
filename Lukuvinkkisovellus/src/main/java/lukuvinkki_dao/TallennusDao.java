@@ -13,7 +13,6 @@ import java.util.logging.Logger;
 public class TallennusDao implements LukuvinkkiDao {
 
     private List<Lukuvinkki> lukuvinkit;
-    private String lukuvinkkiTiedosto;
     private String tietokantaosoite;
 
     public TallennusDao(String tietokantaosoite) throws Exception {
@@ -32,25 +31,6 @@ public class TallennusDao implements LukuvinkkiDao {
         }
 
         lukuvinkit = new ArrayList<>();
-        //       lukuvinkkiTiedosto = tiedosto;
-        /*
-            Tässä tulostusesimerkki
-            ResultSet r = s.executeQuery("SELECT * FROM Linkit");
-            while (r.next()) {
-            System.out.println(r.getInt("id")+" "+r.getString("otsikko")+" "+r.getInt("url"));
-            }
-         */
-
-//        try {
-//            Scanner lukija = new Scanner(new File(lukuvinkkiTiedosto));
-//            while (lukija.hasNextLine()) {
-//                String[] osat = lukija.nextLine().split(";");
-//                lukuvinkit.add(new Lukuvinkki(osat[0], osat[1]));
-//            }
-//        } catch (Exception e) {
-//            FileWriter kirjoittaja = new FileWriter(new File(lukuvinkkiTiedosto));
-//            kirjoittaja.close();
-//        }
     }
 
 // Tänne totetutetaan lukuvinkkien tallennus.
