@@ -38,6 +38,14 @@ public class LukuvinkkiServiceTest {
         lukuvinkkiService.lisaaLukuvinkki(new Lukuvinkki("otsikko1", "testiurl.com"));                
         assertEquals(1, lukuvinkkiDao.LukuvinkkienMaara());
     }
+
+    @Test
+    public void LukuvinkinPoistoOnnistuu() throws Exception {
+        Lukuvinkki lukuvinkki = new Lukuvinkki("otsikko1", "testiurl.com");
+        lukuvinkkiService.lisaaLukuvinkki(lukuvinkki); 
+        lukuvinkkiService.poistaLukuvinkki(lukuvinkki);              
+        assertEquals(0, lukuvinkkiService.listaaKaikki().size());
+    }
     
     @Test
     public void LukuvinkkienListausOnnistuu() throws Exception {
