@@ -53,7 +53,6 @@ public class TallennusDaoTest {
         Lukuvinkki lukuvinkki2 = lukuvinkit.get(1);
         assertEquals("otsake2", lukuvinkki2.getOtsikko());
         assertEquals("urli2.com", lukuvinkki2.getUrl());
-
     }
 
     @Test
@@ -76,10 +75,15 @@ public class TallennusDaoTest {
         dao.poista(lisattava);        
         assertEquals(3, dao.LukuvinkkienMaara());        
     }
+    
+    @Test
+    public void tietokannanTyhjentaminenOnnistuu() throws Exception {
+        dao.tyhjennaTietokanta();
+        assertEquals(0, dao.listaaKaikki().size());
+    }
 
     @After
     public void tearDown() {
         lukuvinkkiFile.delete();
     }
-
 }
