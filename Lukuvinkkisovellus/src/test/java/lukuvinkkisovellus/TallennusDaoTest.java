@@ -67,6 +67,16 @@ public class TallennusDaoTest {
         assertEquals("www.uusi.fi", lukuvinkki.getUrl());
     }
 
+    @Test
+    public void lukuvinkinPoistoOnnistuu() throws Exception {
+        Lukuvinkki lisattava = new Lukuvinkki("uusi vinkki", "www.uusi.fi");
+        Lukuvinkki lisattava2 = new Lukuvinkki("uusi vinkki2", "www.uusi2.fi");
+        dao.lisaa(lisattava);
+        dao.lisaa(lisattava2);
+        dao.poista(lisattava);        
+        assertEquals(3, dao.LukuvinkkienMaara());        
+    }
+
     @After
     public void tearDown() {
         lukuvinkkiFile.delete();

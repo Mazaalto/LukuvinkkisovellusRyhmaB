@@ -41,7 +41,11 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
  
     @Override
     public void poista(Lukuvinkki lukuvinkki) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for (Lukuvinkki l : lukuvinkit) {
+            if (l.equals(lukuvinkki)) {
+                lukuvinkit.remove(l);
+            }
+        }
     }
     
 }

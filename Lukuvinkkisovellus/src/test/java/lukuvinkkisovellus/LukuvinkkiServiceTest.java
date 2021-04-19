@@ -82,4 +82,5 @@ public class LukuvinkkiServiceTest {
         lukuvinkkiService.lisaaLukuvinkki(d);
         assertArrayEquals(lukuvinkit.toArray(), lukuvinkkiService.listaaOtsikonPerusteella("otsi").toArray());
     }
+    
 }
