@@ -20,6 +20,11 @@ public class LukuvinkkiService {
     }
 
     public void lisaaLukuvinkki(Lukuvinkki lukuvinkki) throws Exception {
+        if (lukuvinkki.otsikko.length() < 3 || lukuvinkki.url.length() < 5) {
+            System.out.println("Lukuvinkin otsikon on oltava vähintään 3 ja urlin 5 merkkiä pitkä.");
+            return;
+        }
+        
         this.lukuvinkkiDao.lisaa(lukuvinkki);
     }
 

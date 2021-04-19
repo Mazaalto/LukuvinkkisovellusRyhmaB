@@ -35,8 +35,20 @@ public class LukuvinkkiServiceTest {
     
     @Test
     public void LukuvinkinLisaysOnnistuu() throws Exception {
-        lukuvinkkiService.lisaaLukuvinkki(new Lukuvinkki("otsikko1", "testiurl.com"));                
+        lukuvinkkiService.lisaaLukuvinkki(new Lukuvinkki("val", "valid"));                
         assertEquals(1, lukuvinkkiDao.LukuvinkkienMaara());
+    }
+    
+    @Test
+    public void LukuvinkinLisaysEpaonnistuuLyhyellaOtsikolla() throws Exception {
+        lukuvinkkiService.lisaaLukuvinkki(new Lukuvinkki("ly", "valid"));
+        assertEquals(0, lukuvinkkiDao.LukuvinkkienMaara());
+    }
+    
+    @Test
+    public void LukuvinkinLisaysEpaonnistuuLyhyellaUrlilla() throws Exception {
+        lukuvinkkiService.lisaaLukuvinkki(new Lukuvinkki("val", "inva"));
+        assertEquals(0, lukuvinkkiDao.LukuvinkkienMaara());
     }
 
     @Test
