@@ -34,8 +34,9 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
     @Override
     public void poista(Lukuvinkki lukuvinkki) throws Exception {
         for (Lukuvinkki l : lukuvinkit) {
-            if (l.equals(lukuvinkki)) {
+            if (l.getOtsikko().equals(lukuvinkki.getOtsikko())) {
                 lukuvinkit.remove(l);
+                break;
             }
         }
     }
