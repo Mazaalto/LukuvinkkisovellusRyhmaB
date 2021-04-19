@@ -23,13 +23,13 @@ public class Stepdefs {
 
     @Given("lukuvinkki lisätään otsikolla {string} ja urlilla {string}")
     public void lukuvinkkiLisataan(String otsikko, String url) throws Exception {
-        Lukuvinkki vinkki = new Lukuvinkki(otsikko, url);
-        lukuvinkkiService.lisaaLukuvinkki(vinkki);
+        Linkki vinkki = new Linkki(otsikko, url);
+        lukuvinkkiService.lisaaLinkki(vinkki);
     }
 
     @When("lukuvinkki otsikolla {string} ja urlilla {string} lisätään")
     public void lukuvinkkiOtsikollaJaUrlillaLisataan(String otsikko, String url) throws Exception {
-        lukuvinkkiService.lisaaLukuvinkki(new Lukuvinkki(otsikko, url));
+        lukuvinkkiService.lisaaLinkki(new Linkki(otsikko, url));
     }
 
     @Then("arvon tulisi olla {int}")
@@ -44,14 +44,14 @@ public class Stepdefs {
 
     @When("lukuvinkki otsikolla {string} poistetaan")
     public void lukuvinkkiPoistetaan(String otsikko) throws Exception {
-        List<Lukuvinkki> lukuvinkit = lukuvinkkiService.listaaOtsikonPerusteella(otsikko);
-        Lukuvinkki vinkki = lukuvinkit.get(0);
+        List<Linkki> lukuvinkit = lukuvinkkiService.listaaOtsikonPerusteella(otsikko);
+        Linkki vinkki = lukuvinkit.get(0);
         lukuvinkkiService.poistaLukuvinkki(vinkki);
     }
 
     @Then("lukuvinkkiä ei löydy otsikolla {string}")
     public void lukuvinkkiaEiLoydyJosSeOnPoistettu(String otsikko) throws Exception {
-        lukuvinkkiService.lisaaLukuvinkki(new Lukuvinkki("uusiVinkki", "vinkki.url"));
+        lukuvinkkiService.lisaaLinkki(new Linkki("uusiVinkki", "vinkki.url"));
         assertEquals(0, lukuvinkkiService.listaaOtsikonPerusteella(otsikko).size());
     }
 

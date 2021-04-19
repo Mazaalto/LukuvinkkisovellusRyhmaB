@@ -5,10 +5,12 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import lukuvinkkisovellus.Lukuvinkki;
+import lukuvinkkisovellus.Linkki;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import lukuvinkkisovellus.Kirja;
+import lukuvinkkisovellus.Lukuvinkki;
 
 public class TallennusDao implements LukuvinkkiDao {
 
@@ -33,7 +35,7 @@ public class TallennusDao implements LukuvinkkiDao {
         lukuvinkit = new ArrayList<>();
     }
 
-// Tänne totetutetaan lukuvinkkien tallennus.
+// Muutetaan myöhemmin listaamaan sekä linkit että kirjat.
     @Override
     public List<Lukuvinkki> listaaKaikki() {
         lukuvinkit.clear();
@@ -41,9 +43,11 @@ public class TallennusDao implements LukuvinkkiDao {
             Connection db = DriverManager.getConnection(tietokantaosoite);
             Statement s = db.createStatement();
             ResultSet vinkit = s.executeQuery("SELECT * FROM Linkit");
+            
             while (vinkit.next()) {
-                lukuvinkit.add(new Lukuvinkki(vinkit.getString("otsikko"), vinkit.getString("url")));
+                lukuvinkit.add(new Linkki(vinkit.getString("otsikko"), vinkit.getString("url")));
             }
+    
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -52,7 +56,7 @@ public class TallennusDao implements LukuvinkkiDao {
     }
 
     @Override
-    public void lisaa(Lukuvinkki lukuvinkki) throws Exception {
+    public void lisaaLinkki(Linkki lukuvinkki) throws Exception {
         Connection db = DriverManager.getConnection(tietokantaosoite);
         PreparedStatement stmt = db.prepareStatement("INSERT INTO Linkit(otsikko,url) VALUES(?,?)");
         String otsikko = lukuvinkki.getOtsikko();
@@ -65,18 +69,22 @@ public class TallennusDao implements LukuvinkkiDao {
         lukuvinkit.add(lukuvinkki);
 
     }
-
+    
+    
+    //Vaihdetaan myöhemmin koskemaan pelkkiä linkkejä
     @Override
     public int LukuvinkkienMaara() {
         int vinkkienMaara = -5;
         try {
             Connection db = DriverManager.getConnection(tietokantaosoite);
             Statement s = db.createStatement();
-            ResultSet vinkit = s.executeQuery("SELECT * FROM Linkit");
+            ResultSet linkit = s.executeQuery("SELECT * FROM Linkit");
+    
             ArrayList<String> kaikki = new ArrayList<>();
-            while(vinkit.next()) {
-                kaikki.add(vinkit.getString("otsikko"));
+            while(linkit.next()) {
+                kaikki.add(linkit.getString("otsikko"));
             }
+            
             vinkkienMaara = kaikki.size();
 
         } catch (SQLException ex) {
@@ -84,9 +92,31 @@ public class TallennusDao implements LukuvinkkiDao {
         }
         return vinkkienMaara;
     }
+    
+    @Override
+    public int KirjojenLukumaara() {
+        int maara = 0;
+        
+        try {
+            Connection db = DriverManager.getConnection(tietokantaosoite);
+            Statement s = db.createStatement();
+            ResultSet kirjat = s.executeQuery("SELECT * FROM Kirjat");
+    
+            ArrayList<String> kaikki = new ArrayList<>();
+            while(kirjat.next()) {
+                kaikki.add(kirjat.getString("otsikko"));
+            }
+            
+            maara = kaikki.size();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TallennusDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return maara;
+    }
 
     @Override
-    public void poista(Lukuvinkki lukuvinkki) throws Exception {
+    public void poistaLinkki(Linkki lukuvinkki) throws Exception {
         Connection db = DriverManager.getConnection(tietokantaosoite);
         PreparedStatement stmt = db.prepareStatement("DELETE FROM Linkit WHERE otsikko = ?");
         
@@ -102,9 +132,53 @@ public class TallennusDao implements LukuvinkkiDao {
         Connection db = DriverManager.getConnection(tietokantaosoite);
         PreparedStatement stmt = db.prepareStatement("DELETE FROM Linkit");
         stmt.execute();
+        
+        PreparedStatement stmt2 = db.prepareStatement("DELETE FROM Kirjat");
+        stmt2.execute();
+        
         db.close();
-        System.out.println("Tietokanta tyjennetty");
+        System.out.println("Tietokanta tyhjennetty");
         lukuvinkit.removeAll(lukuvinkit);
+    }
+
+    @Override
+    public void lisaaKirja(Kirja lukuvinkki) throws Exception {
+        Connection db = DriverManager.getConnection(tietokantaosoite);
+        PreparedStatement stmt = db.prepareStatement("INSERT INTO Kirjat(otsikko, kirjailija, julkaisuvuosi, julkaisija, url) VALUES(?,?,?,?,?)");
+        String otsikko = lukuvinkki.getOtsikko();
+        String kirjailija = lukuvinkki.getKirjailija();
+        int julkaisuvuosi = lukuvinkki.getJulkaisuvuosi();
+        String julkaisija = lukuvinkki.getJulkaisija();
+        String url = lukuvinkki.getUrl();
+        
+        stmt.setString(1, otsikko);
+        stmt.setString(2, kirjailija);
+        stmt.setInt(3, julkaisuvuosi);
+        stmt.setString(4, julkaisija);
+        stmt.setString(5, url);
+        stmt.execute();
+        db.close();
+        System.out.println("Lisääminen onnistui");
+        lukuvinkit.add(lukuvinkki);
+    }
+
+    @Override
+    public List<Lukuvinkki> listaaKirjat() {
+        lukuvinkit.clear();
+        try {
+            Connection db = DriverManager.getConnection(tietokantaosoite);
+            Statement s = db.createStatement();
+            ResultSet vinkit = s.executeQuery("SELECT * FROM Kirjat");
+            
+            while (vinkit.next()) {
+                lukuvinkit.add(new Kirja(vinkit.getString("otsikko"), vinkit.getString("kirjailija"), vinkit.getInt("julkaisuvuosi"), vinkit.getString("julkaisija"), vinkit.getString("url")));
+            }
+    
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return lukuvinkit;
     }
 
 }

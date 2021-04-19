@@ -1,17 +1,25 @@
 package lukuvinkki_dao;
 
 import java.util.List;
+import lukuvinkkisovellus.Kirja;
+import lukuvinkkisovellus.Linkki;
 import lukuvinkkisovellus.Lukuvinkki;
 
 public interface LukuvinkkiDao {
 
     List<Lukuvinkki> listaaKaikki();
+    
+    List<Lukuvinkki> listaaKirjat();
 
-    void lisaa(Lukuvinkki lukuvinkki) throws Exception;
+    void lisaaLinkki(Linkki lukuvinkki) throws Exception;
+    
+    void lisaaKirja(Kirja lukuvinkki) throws Exception;
     
     int LukuvinkkienMaara();
     
-    void poista(Lukuvinkki lukuvinkki) throws Exception;
+    int KirjojenLukumaara();
+    
+    void poistaLinkki(Linkki lukuvinkki) throws Exception;
     
     void tyhjennaTietokanta() throws Exception;
 }

@@ -3,7 +3,7 @@ package lukuvinkkisovellus;
 import java.util.Iterator;
 import java.util.List;
 import lukuvinkki_dao.LukuvinkkiDao;
-import lukuvinkkisovellus.Lukuvinkki;
+import lukuvinkkisovellus.Linkki;
 
 public class LukuvinkkiService {
 
@@ -18,19 +18,32 @@ public class LukuvinkkiService {
         return this.lukuvinkkiDao.listaaKaikki();
 
     }
+    
+    public List listaaKirjat() {
+        return this.lukuvinkkiDao.listaaKirjat();
+    }
 
-    public void lisaaLukuvinkki(Lukuvinkki lukuvinkki) throws Exception {
-        if (lukuvinkki.otsikko.length() < 3 || lukuvinkki.url.length() < 5) {
-            System.out.println("Lukuvinkin otsikon on oltava vähintään 3 ja urlin 5 merkkiä pitkä.");
+    public void lisaaLinkki(Linkki lukuvinkki) throws Exception {
+        if (lukuvinkki.otsikko.trim().isEmpty() || lukuvinkki.url.trim().isEmpty()) {
+            System.out.println("Lukuvinkillä on oltava otsikko ja url.");
             return;
         }
         
-        this.lukuvinkkiDao.lisaa(lukuvinkki);
+        this.lukuvinkkiDao.lisaaLinkki(lukuvinkki);
+    }
+    
+    public void lisaaKirja(Kirja lukuvinkki) throws Exception {
+        if (lukuvinkki.otsikko.trim().isEmpty() || lukuvinkki.url.trim().isEmpty()) {
+            System.out.println("Lukuvinkillä on oltava otsikko ja url");
+            return;
+        }
+        
+        this.lukuvinkkiDao.lisaaKirja(lukuvinkki);
     }
 
     public List listaaOtsikonPerusteella(String otsikko) {
-        List<Lukuvinkki> lukuvinkit = listaaKaikki();
-        for (Iterator<Lukuvinkki> iterator = lukuvinkit.iterator(); iterator.hasNext(); ) {
+        List<Linkki> lukuvinkit = listaaKaikki();
+        for (Iterator<Linkki> iterator = lukuvinkit.iterator(); iterator.hasNext(); ) {
             String value = iterator.next().getOtsikko();
 
             if (!value.contains(otsikko)) {
@@ -44,8 +57,12 @@ public class LukuvinkkiService {
         return this.lukuvinkkiDao.LukuvinkkienMaara();
     }
     
-    public void poistaLukuvinkki(Lukuvinkki lukuvinkki) throws Exception {
-        this.lukuvinkkiDao.poista(lukuvinkki);
+    public int getKirjojenMaara() {
+        return this.lukuvinkkiDao.KirjojenLukumaara();
+    }
+    
+    public void poistaLukuvinkki(Linkki lukuvinkki) throws Exception {
+        this.lukuvinkkiDao.poistaLinkki(lukuvinkki);
     }
     public void tyhjennaTietokanta() throws Exception {
         this.lukuvinkkiDao.tyhjennaTietokanta();

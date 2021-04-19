@@ -39,26 +39,58 @@ public class UI {
             if (komento.equals("") || komento.equals(" ")) {
                 break;
             } else if (komento.equals("1")) {
+                System.out.println("1 (lisää linkki), 2 (lisää kirja)");
+                String tyyppi = reader.nextLine();
+                
+                if (tyyppi.equals("1")) {
                 //Tähän toteutetaan lisääminen
-                System.out.println("Lisätään lukuvinkki");
+                System.out.println("Lisätään lukuvinkki (linkki)");
                 System.out.println("Anna otsikko: ");
                 String otsikko = reader.nextLine();
                 System.out.println("Anna url: ");
                 String url = reader.nextLine();
-                lukuvinkkiService.lisaaLukuvinkki(new Lukuvinkki(otsikko, url));
+                lukuvinkkiService.lisaaLinkki(new Linkki(otsikko, url));
+                } else if (tyyppi.equals("2")) {
+                    System.out.println("Lisätään lukuvinkki (kirja)");
+                    System.out.println("Anna otsikko: "); 
+                    String otsikko = reader.nextLine();
+                    System.out.println("Anna kirjailija: ");
+                    String kirjailija = reader.nextLine();
+                    System.out.println("Anna julkaisuvuosi: ");
+                    int julkaisuvuosi = Integer.valueOf(reader.nextLine());
+                    System.out.println("Anna julkaisija: ");
+                    String julkaisija = reader.nextLine();
+                    System.out.println("Anna url: ");
+                    String url = reader.nextLine();
+                    lukuvinkkiService.lisaaKirja(new Kirja(otsikko, kirjailija, julkaisuvuosi, julkaisija, url));
+                }
             } else if (komento.equals("2")) {
+                System.out.println("1 (linkit), 2 (kirjat)");
                 //tähän toteutetaan kaikkien lukuvinkkien tulostus
-                List<Lukuvinkki> lukuvinkit = lukuvinkkiService.listaaKaikki();
+                String kategoria = reader.nextLine();
+                if (kategoria.equals("1")) {
 
-                if (lukuvinkit.isEmpty()) {
-                    System.out.println("ei tallennettuja vinkkejä.");
-                } else {
-                    System.out.println("Listataan lukuvinkit");
-                    lukuvinkit.stream().forEach(lv -> System.out.println(lv));
+                    List<Lukuvinkki> lukuvinkit = lukuvinkkiService.listaaKaikki();
+
+                    if (lukuvinkit.isEmpty()) {
+                        System.out.println("ei tallennettuja vinkkejä.");
+                    } else {
+                        System.out.println("Listataan lukuvinkit");
+                        lukuvinkit.stream().forEach(lv -> System.out.println(lv));
+                    }
+                } else if (kategoria.equals("2")) {
+                    List<Lukuvinkki> lukuvinkit = lukuvinkkiService.listaaKirjat();
+
+                    if (lukuvinkit.isEmpty()) {
+                        System.out.println("ei tallennettuja vinkkejä.");
+                    } else {
+                        System.out.println("Listataan lukuvinkit (kirjat)");
+                        lukuvinkit.stream().forEach(lv -> System.out.println(lv));
+                    }
                 }
             } else if (komento.equals("3")) {
                 //tähän toteutetaan lukuvinkkien poistaminen
-                List<Lukuvinkki> lukuvinkit = lukuvinkkiService.listaaKaikki();
+                List<Linkki> lukuvinkit = lukuvinkkiService.listaaKaikki();
 
                 if (lukuvinkit.isEmpty()) {
                     System.out.println("Ei vielä yhtään lukuvinkkiä");
@@ -107,7 +139,7 @@ public class UI {
         }
     }
 
-    private void kysyPoistetaanko(List<Lukuvinkki> lukuvinkit, Scanner reader, LukuvinkkiService lukuvinkkiService) throws Exception {
+    private void kysyPoistetaanko(List<Linkki> lukuvinkit, Scanner reader, LukuvinkkiService lukuvinkkiService) throws Exception {
         System.out.println("Poistetaanko: " + lukuvinkit.get(0).toString());
         System.out.println("1 poistetaan, 2 ei poisteta");
         if (reader.nextLine().equals("1")) {
