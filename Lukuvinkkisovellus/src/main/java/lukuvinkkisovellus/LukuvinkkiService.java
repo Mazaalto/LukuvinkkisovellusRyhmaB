@@ -42,4 +42,7 @@ public class LukuvinkkiService {
     public void poistaLukuvinkki(Lukuvinkki lukuvinkki) throws Exception {
         this.lukuvinkkiDao.poista(lukuvinkki);
     }
+    public void tyhjennaTietokanta() throws Exception {
+        this.lukuvinkkiDao.tyhjennaTietokanta();
+    }
 }

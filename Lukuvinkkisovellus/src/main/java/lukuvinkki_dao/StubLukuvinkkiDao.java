@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package lukuvinkki_dao;
 
 import java.util.ArrayList;
 import java.util.List;
 import lukuvinkkisovellus.Lukuvinkki;
 
-/**
- *
- * @author anttihalmetoja
- */
 public class StubLukuvinkkiDao implements LukuvinkkiDao {
 
     ArrayList<Lukuvinkki> lukuvinkit;
@@ -46,6 +38,11 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
                 lukuvinkit.remove(l);
             }
         }
+    }
+
+    @Override
+    public void tyhjennaTietokanta() throws Exception {
+        lukuvinkit.removeAll(lukuvinkit);
     }
     
 }

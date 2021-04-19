@@ -12,4 +12,6 @@ public interface LukuvinkkiDao {
     int LukuvinkkienMaara();
     
     void poista(Lukuvinkki lukuvinkki) throws Exception;
+    
+    void tyhjennaTietokanta() throws Exception;
 }

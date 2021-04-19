@@ -34,7 +34,7 @@ public class UI {
     private void printCommands() throws Exception {
         System.out.println("Valitse allaolevista komennoista numero ja paina enter");
         while (true) {
-            System.out.println("1 (lisää lukuvinkki), 2 (listaa lukuvinkit), 3 (poista lukuvinkki), 4 (kerro vinkkien määrä), tyhjä lopettaa");
+            System.out.println("1 (lisää lukuvinkki), 2 (listaa lukuvinkit), 3 (poista lukuvinkki), 4 (kerro vinkkien määrä), 5 (poista kaikki lukuvinkit), tyhjä lopettaa");
             String komento = reader.nextLine();
             if (komento.equals("") || komento.equals(" ")) {
                 break;
@@ -95,11 +95,16 @@ public class UI {
             } else if (komento.equals("4")) {
                 System.out.println("Lukuvinkkien määrä järjestelmässä yhteensä: " + lukuvinkkiService.getLukuvinkkienMaara());
 
+            } else if (komento.equals("5")) {
+                System.out.println("Haluatko varmasti poistaa kaikki lukuvinkit? 1 kyllä, 2 ei");
+                if (reader.nextLine().equals("1")) {
+                    System.out.println("Kaikki lukuvinkit poistettu");
+                    lukuvinkkiService.tyhjennaTietokanta();
+                }
             } else {
                 System.out.println("Epäkelpo komento. Syötä komento uudelleen");
             }
         }
-
     }
 
     private void kysyPoistetaanko(List<Lukuvinkki> lukuvinkit, Scanner reader, LukuvinkkiService lukuvinkkiService) throws Exception {
