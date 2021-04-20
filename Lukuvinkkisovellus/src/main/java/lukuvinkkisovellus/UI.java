@@ -16,9 +16,6 @@ public class UI {
     private LukuvinkkiService lukuvinkkiService;
 
     public UI(Scanner reader) throws FileNotFoundException, IOException, Exception {
-        Properties properties = new Properties();
-        properties.load(new FileInputStream("config.properties"));
-        String lukuvinkkiTiedosto = properties.getProperty("lukuvinkkiTiedosto");
 
         this.reader = reader;
         LukuvinkkiDao lukuvinkkiDao = new TallennusDao("jdbc:sqlite:lukuvinkkisovellus.db");
