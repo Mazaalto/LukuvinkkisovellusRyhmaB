@@ -3,6 +3,8 @@ package lukuvinkki_dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import lukuvinkkisovellus.Kirja;
+import lukuvinkkisovellus.Linkki;
 import lukuvinkkisovellus.Lukuvinkki;
 
 public class StubLukuvinkkiDao implements LukuvinkkiDao {
@@ -12,8 +14,7 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
     public StubLukuvinkkiDao() {
         this.lukuvinkit = new ArrayList<Lukuvinkki>();        
     }
-    
-    
+     
     
     @Override
     public ArrayList<Lukuvinkki> listaaKaikki() {
@@ -21,7 +22,7 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
     }
 
     @Override
-    public void lisaa(Lukuvinkki lukuvinkki) throws Exception {
+    public void lisaaLinkki(Linkki lukuvinkki) throws Exception {
         lukuvinkit.add(lukuvinkki); 
     }
 
@@ -32,7 +33,7 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
 
  
     @Override
-    public void poista(Lukuvinkki lukuvinkki) throws Exception {
+    public void poistaLinkki(Linkki lukuvinkki) throws Exception {
         for (Lukuvinkki l : lukuvinkit) {
             if (l.getOtsikko().equals(lukuvinkki.getOtsikko())) {
                 lukuvinkit.remove(l);
@@ -45,5 +46,21 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
     public void tyhjennaTietokanta() throws Exception {
         lukuvinkit.removeAll(lukuvinkit);
     }
+
+    @Override
+    public void lisaaKirja(Kirja lukuvinkki) throws Exception {
+        lukuvinkit.add(lukuvinkki);
+    }
+
+    @Override
+    public List<Lukuvinkki> listaaKirjat() {
+        return lukuvinkit;
+    }
+
+    @Override
+    public int KirjojenLukumaara() {
+        return lukuvinkit.size();
+    }
+
     
 }

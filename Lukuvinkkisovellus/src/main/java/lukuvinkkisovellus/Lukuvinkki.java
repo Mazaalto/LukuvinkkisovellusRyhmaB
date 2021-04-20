@@ -1,28 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package lukuvinkkisovellus;
 
-public class Lukuvinkki {
 
-    String otsikko;
-    String url;
-
-    public Lukuvinkki(String otsikko, String url) {
-        this.otsikko = otsikko;
-        this.url = url;
-    }
-
-    public String getOtsikko() {
-        return otsikko;
-    }
-
-    public String getUrl() {
-        return url;
-    }
+public interface Lukuvinkki {
     
-    @Override
-    public String toString() {
-        return "Vinkin otsikko: "  + otsikko + ", vinkin linkki: " + url;
-    }
-
+    String getOtsikko();
     
-
 }
