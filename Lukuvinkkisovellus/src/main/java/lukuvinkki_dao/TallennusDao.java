@@ -20,6 +20,7 @@ public class TallennusDao implements LukuvinkkiDao {
     public TallennusDao(String tietokantaosoite) throws Exception {
         this.tietokantaosoite = tietokantaosoite;
         //Tietokannan luonti
+        Class.forName("org.sqlite.JDBC");
         try {
             Connection db = DriverManager.getConnection(tietokantaosoite);
             Statement s = db.createStatement();
