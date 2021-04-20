@@ -36,7 +36,5 @@ Lukuvinkit pysyvät tallessa vaikka suljet sovelluksen.
 
 # Releaset
 Täältä löytyy ohjelman uusin release:[Ensimmäinen release](https://github.com/Mazaalto/LukuvinkkisovellusRyhmaB/releases/tag/1.0)
-Pääset käyttämään ohjelmaa ajamalla koneellasi jar-tiedoston komennolla java -jar Lukuvinkkisovellus.jar.  Ohjelma toimii jos olet samassa hakemistossa, jossa tiedosto on. Esim. Downloads
-
-    komento tulee suorittaa hakemistosta, jossa jar-tiedosto sijaitsee
+Pääset käyttämään ohjelmaa ajamalla koneellasi jar-tiedoston komennolla java -jar Lukuvinkkisovellus.jar.  Ohjelma toimii jos olet samassa hakemistossa, jossa tiedosto on. Esim. Downloads. 
 
