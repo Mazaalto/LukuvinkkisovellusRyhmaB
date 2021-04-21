@@ -1,5 +1,6 @@
 package lukuvinkkisovellus;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Linkki implements Lukuvinkki {
@@ -39,8 +40,14 @@ public class Linkki implements Lukuvinkki {
     @Override
      public void merkkaaLuetuksi() {
         this.luettu = true;
+        SimpleDateFormat ft = new SimpleDateFormat ("E d.MM.yyyy 'klo' HH:mm:ss");
         merkittyLuetuksi = java.util.Calendar.getInstance().getTime();
-        System.out.println(merkittyLuetuksi + onkoLuettu().toString());
+        if (this.luettu) {
+            System.out.println("Lukuaika: "+ft.format(merkittyLuetuksi));
+        } else {
+            System.out.println("Lukuvinkkiä ei ole vielä luettu");
+        }
+        
         
     }
     @Override

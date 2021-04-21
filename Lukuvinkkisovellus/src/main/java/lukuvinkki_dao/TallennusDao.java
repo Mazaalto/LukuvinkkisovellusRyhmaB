@@ -190,12 +190,18 @@ public class TallennusDao implements LukuvinkkiDao {
     public void merkkaaLuetuksi(Lukuvinkki lukuvinkki) {
         String otsikko = lukuvinkki.getOtsikko();
         String milloinLuettu = lukuvinkki.getMilloinLuettu();
+        
         try {
             Connection db = DriverManager.getConnection(tietokantaosoite);
-            PreparedStatement stmt = db.prepareStatement("UPDATE Linkit SET onkoLuettu = 1 WHERE otsikko = otsikko");
-            stmt.execute();
-            PreparedStatement stmt2 = db.prepareStatement("UPDATE Linkit SET milloinLuettu = milloinLuettu WHERE otsikko = otsikko");
-            stmt2.execute();
+            PreparedStatement stmt = db.prepareStatement("UPDATE Linkit SET onkoLuettu = ? WHERE otsikko = ?");
+            stmt.setInt(1, 1);            
+            stmt.setString(2, otsikko);
+            stmt.executeUpdate();
+
+            PreparedStatement stmt2 = db.prepareStatement("UPDATE Linkit SET milloinLuettu = ? WHERE otsikko = ?");
+            stmt2.setString(1, milloinLuettu);          
+            stmt2.setString(2, otsikko);
+            stmt2.executeUpdate();
             db.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
