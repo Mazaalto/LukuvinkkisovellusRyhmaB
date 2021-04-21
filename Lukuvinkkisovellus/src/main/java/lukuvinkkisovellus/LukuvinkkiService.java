@@ -18,7 +18,7 @@ public class LukuvinkkiService {
         return this.lukuvinkkiDao.listaaKaikki();
 
     }
-    
+
     public List listaaKirjat() {
         return this.lukuvinkkiDao.listaaKirjat();
     }
@@ -28,43 +28,50 @@ public class LukuvinkkiService {
             System.out.println("Lukuvinkillä on oltava otsikko ja url.");
             return;
         }
-        
+
         this.lukuvinkkiDao.lisaaLinkki(lukuvinkki);
     }
-    
+
     public void lisaaKirja(Kirja lukuvinkki) throws Exception {
         if (lukuvinkki.otsikko.trim().isEmpty() || lukuvinkki.url.trim().isEmpty()) {
             System.out.println("Lukuvinkillä on oltava otsikko ja url");
             return;
         }
-        
+
         this.lukuvinkkiDao.lisaaKirja(lukuvinkki);
     }
 
     public List listaaOtsikonPerusteella(String otsikko) {
         List<Linkki> lukuvinkit = listaaKaikki();
-        for (Iterator<Linkki> iterator = lukuvinkit.iterator(); iterator.hasNext(); ) {
+        for (Iterator<Linkki> iterator = lukuvinkit.iterator(); iterator.hasNext();) {
             String value = iterator.next().getOtsikko();
 
             if (!value.contains(otsikko)) {
                 iterator.remove();
             }
         }
-  
+
         return lukuvinkit;
     }
+
     public int getLukuvinkkienMaara() {
         return this.lukuvinkkiDao.LukuvinkkienMaara();
     }
-    
+
     public int getKirjojenMaara() {
         return this.lukuvinkkiDao.KirjojenLukumaara();
     }
-    
-    public void poistaLukuvinkki(Linkki lukuvinkki) throws Exception {
+
+    public void poistaLukuvinkki(Lukuvinkki lukuvinkki) throws Exception {
         this.lukuvinkkiDao.poistaLinkki(lukuvinkki);
     }
+
     public void tyhjennaTietokanta() throws Exception {
         this.lukuvinkkiDao.tyhjennaTietokanta();
+    }
+
+    public void merkkaaLuetuksi(Lukuvinkki lukuvinkki) throws Exception {
+        lukuvinkki.merkkaaLuetuksi();
+        this.lukuvinkkiDao.merkkaaLuetuksi(lukuvinkki);
     }
 }
