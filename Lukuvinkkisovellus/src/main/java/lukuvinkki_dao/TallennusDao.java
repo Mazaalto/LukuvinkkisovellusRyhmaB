@@ -44,6 +44,32 @@ public class TallennusDao implements LukuvinkkiDao {
             Connection db = DriverManager.getConnection(tietokantaosoite);
             Statement s = db.createStatement();
             ResultSet vinkit = s.executeQuery("SELECT * FROM Linkit");
+         
+            Connection db2 = DriverManager.getConnection(tietokantaosoite);
+            Statement b = db2.createStatement();
+            ResultSet kirjat = b.executeQuery("SELECT * FROM Kirjat");
+            
+            while (vinkit.next()) {
+                lukuvinkit.add(new Linkki(vinkit.getString("otsikko"), vinkit.getString("url")));
+            }
+            while (kirjat.next()) {
+                // Kirja(String otsikko, String kirjailija, int julkaisuvuosi, String julkaisija, String url)
+                lukuvinkit.add(new Kirja(kirjat.getString("otsikko"), kirjat.getString("kirjailija"), kirjat.getInt("julkaisuvuosi"), kirjat.getString("julkaisija"), kirjat.getString("url")));
+            }
+            
+    
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return lukuvinkit;
+    }
+    public List<Lukuvinkki> listaaKaikkiLinkit() {
+        lukuvinkit.clear();
+        try {
+            Connection db = DriverManager.getConnection(tietokantaosoite);
+            Statement s = db.createStatement();
+            ResultSet vinkit = s.executeQuery("SELECT * FROM Linkit");
             
             while (vinkit.next()) {
                 lukuvinkit.add(new Linkki(vinkit.getString("otsikko"), vinkit.getString("url")));
@@ -180,6 +206,18 @@ public class TallennusDao implements LukuvinkkiDao {
             System.out.println(e.getMessage());
         }
         return lukuvinkit;
+    }
+
+    @Override
+    public void poistaKirja(Kirja kirja) throws Exception {
+        Connection db = DriverManager.getConnection(tietokantaosoite);
+        PreparedStatement stmt = db.prepareStatement("DELETE FROM Kirjat WHERE otsikko = ?");
+        
+        stmt.setString(1, kirja.getOtsikko());
+        stmt.execute();
+        db.close();
+        System.out.println("Lukuvinkki poistettu");
+        lukuvinkit.remove(kirja);
     }
 
 }

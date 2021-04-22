@@ -20,6 +20,7 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
     public ArrayList<Lukuvinkki> listaaKaikki() {
         return lukuvinkit;
     }
+    
 
     @Override
     public void lisaaLinkki(Linkki lukuvinkki) throws Exception {
@@ -61,6 +62,22 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
     public int KirjojenLukumaara() {
         return lukuvinkit.size();
     }
+
+    @Override
+    public void poistaKirja(Kirja kirja) throws Exception {
+        for (Lukuvinkki l : lukuvinkit) {
+            if (l.getOtsikko().equals(kirja.getOtsikko())) {
+                lukuvinkit.remove(l);
+                break;
+            }
+        }
+    }
+
+    @Override
+    public List<Lukuvinkki> listaaKaikkiLinkit() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
     
 }

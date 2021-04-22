@@ -18,6 +18,11 @@ public class LukuvinkkiService {
         return this.lukuvinkkiDao.listaaKaikki();
 
     }
+    public List listaaKaikkiLinkit() {
+
+        return this.lukuvinkkiDao.listaaKaikkiLinkit();
+
+    }
     
     public List listaaKirjat() {
         return this.lukuvinkkiDao.listaaKirjat();
@@ -63,6 +68,9 @@ public class LukuvinkkiService {
     
     public void poistaLukuvinkki(Linkki lukuvinkki) throws Exception {
         this.lukuvinkkiDao.poistaLinkki(lukuvinkki);
+    }
+    public void poistaKirja(Kirja kirja) throws Exception {
+        this.lukuvinkkiDao.poistaKirja(kirja);
     }
     public void tyhjennaTietokanta() throws Exception {
         this.lukuvinkkiDao.tyhjennaTietokanta();
