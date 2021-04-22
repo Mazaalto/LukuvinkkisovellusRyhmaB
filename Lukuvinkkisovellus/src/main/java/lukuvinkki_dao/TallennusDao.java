@@ -2,6 +2,7 @@ package lukuvinkki_dao;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -39,6 +40,32 @@ public class TallennusDao implements LukuvinkkiDao {
 // Muutetaan myöhemmin listaamaan sekä linkit että kirjat.
     @Override
     public List<Lukuvinkki> listaaKaikki() {
+        lukuvinkit.clear();
+        try {
+            Connection db = DriverManager.getConnection(tietokantaosoite);
+            Statement s = db.createStatement();
+            ResultSet vinkit = s.executeQuery("SELECT * FROM Linkit");
+         
+            Connection db2 = DriverManager.getConnection(tietokantaosoite);
+            Statement b = db2.createStatement();
+            ResultSet kirjat = b.executeQuery("SELECT * FROM Kirjat");
+            
+            while (vinkit.next()) {
+                lukuvinkit.add(new Linkki(vinkit.getString("otsikko"), vinkit.getString("url")));
+            }
+            while (kirjat.next()) {
+                // Kirja(String otsikko, String kirjailija, int julkaisuvuosi, String julkaisija, String url)
+                lukuvinkit.add(new Kirja(kirjat.getString("otsikko"), kirjat.getString("kirjailija"), kirjat.getInt("julkaisuvuosi"), kirjat.getString("julkaisija"), kirjat.getString("url")));
+            }
+            
+    
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return lukuvinkit;
+    }
+    public List<Lukuvinkki> listaaKaikkiLinkit() {
         lukuvinkit.clear();
         try {
             Connection db = DriverManager.getConnection(tietokantaosoite);
@@ -205,8 +232,41 @@ public class TallennusDao implements LukuvinkkiDao {
     }
 
     @Override
-    public void vieTiedostoon() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void vieTiedostoon(String tiedosto) throws Exception {
+        List<Lukuvinkki> jarjestelmanVinkit = this.listaaKaikki();
+        
+        try {
+            File uusiTiedosto = new File(tiedosto);
+            if (!uusiTiedosto.createNewFile()) {
+                System.out.println("Tiedoston nimi on varattu");
+            }
+        } catch (IOException e) {
+            System.out.println("Tapahtui virhe.");
+            e.printStackTrace();
+        }
+        
+        this.tallennaTiedostoon(tiedosto, jarjestelmanVinkit);
+        
+        
+    }
+    
+    private void tallennaTiedostoon(String tiedosto, List<Lukuvinkki> vinkit) throws Exception {
+        try (FileWriter kirjoittaja = new FileWriter(new File(tiedosto))) {
+            for (Lukuvinkki vinkki: vinkit) {              
+                kirjoittaja.write(vinkki.toString() + "\n");
+            }           
+        } 
+    }
+    
+    public void poistaKirja(Kirja kirja) throws Exception {
+        Connection db = DriverManager.getConnection(tietokantaosoite);
+        PreparedStatement stmt = db.prepareStatement("DELETE FROM Kirjat WHERE otsikko = ?");
+        
+        stmt.setString(1, kirja.getOtsikko());
+        stmt.execute();
+        db.close();
+        System.out.println("Lukuvinkki poistettu");
+        lukuvinkit.remove(kirja);
     }
 
 }

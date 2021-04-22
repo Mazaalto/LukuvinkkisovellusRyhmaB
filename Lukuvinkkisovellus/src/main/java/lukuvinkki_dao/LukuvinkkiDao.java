@@ -10,6 +10,7 @@ public interface LukuvinkkiDao {
     List<Lukuvinkki> listaaKaikki();
     
     List<Lukuvinkki> listaaKirjat();
+    List<Lukuvinkki> listaaKaikkiLinkit();
 
     void lisaaLinkki(Linkki lukuvinkki) throws Exception;
     
@@ -25,5 +26,8 @@ public interface LukuvinkkiDao {
     
     void tuoTiedostosta(String tiedosto) throws Exception;
     
-    void vieTiedostoon() throws Exception;
+    void vieTiedostoon(String tiedosto) throws Exception;
+    
+    void poistaKirja(Kirja kirja) throws Exception;
+
 }

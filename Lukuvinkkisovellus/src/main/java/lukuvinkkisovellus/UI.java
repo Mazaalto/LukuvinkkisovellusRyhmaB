@@ -38,7 +38,7 @@ public class UI {
             } else if (komento.equals("1")) {
                 System.out.println("1 (lisää linkki), 2 (lisää kirja)");
                 String tyyppi = reader.nextLine();
-                
+
                 if (tyyppi.equals("1")) {
                     //Tähän toteutetaan lisääminen
                     System.out.println("Lisätään lukuvinkki (linkki)");
@@ -46,10 +46,14 @@ public class UI {
                     String otsikko = reader.nextLine();
                     System.out.println("Anna url: ");
                     String url = reader.nextLine();
+
                 lukuvinkkiService.lisaaLinkki(new Linkki(otsikko, url));
+
+                    lukuvinkkiService.lisaaLinkki(new Linkki(otsikko, url));
+
                 } else if (tyyppi.equals("2")) {
                     System.out.println("Lisätään lukuvinkki (kirja)");
-                    System.out.println("Anna otsikko: "); 
+                    System.out.println("Anna otsikko: ");
                     String otsikko = reader.nextLine();
                     System.out.println("Anna kirjailija: ");
                     String kirjailija = reader.nextLine();
@@ -62,12 +66,12 @@ public class UI {
                     lukuvinkkiService.lisaaKirja(new Kirja(otsikko, kirjailija, julkaisuvuosi, julkaisija, url));
                 }
             } else if (komento.equals("2")) {
-                System.out.println("1 (linkit), 2 (kirjat)");
+                System.out.println("1 (linkit), 2 (kirjat), muuten (listaa kaikki)");
                 //tähän toteutetaan kaikkien lukuvinkkien tulostus
                 String kategoria = reader.nextLine();
                 if (kategoria.equals("1")) {
 
-                    List<Lukuvinkki> lukuvinkit = lukuvinkkiService.listaaKaikki();
+                    List<Lukuvinkki> lukuvinkit = lukuvinkkiService.listaaKaikkiLinkit();
 
                     if (lukuvinkit.isEmpty()) {
                         System.out.println("ei tallennettuja vinkkejä.");
@@ -84,7 +88,12 @@ public class UI {
                         System.out.println("Listataan lukuvinkit (kirjat)");
                         lukuvinkit.stream().forEach(lv -> System.out.println(lv));
                     }
+
+                } else {
+                    List<Lukuvinkki> lukuvinkit2 = lukuvinkkiService.listaaKaikki();
+                    lukuvinkit2.stream().forEach(lv -> System.out.println(lv));
                 }
+                
             } else if (komento.equals("3")) {
                 //tähän toteutetaan lukuvinkkien poistaminen
                 List<Linkki> lukuvinkit = lukuvinkkiService.listaaKaikki();
@@ -135,6 +144,10 @@ public class UI {
                 String komento2 = reader.nextLine();
                 if (komento2.equals("1")) {
                     lukuvinkkiService.tuoTiedostosta("testi.txt");
+                } else if (komento2.equals("2")) {
+                    System.out.println("Minkä niminen tiedosto luodaan?");
+                    String tiedostonNimi = reader.nextLine();
+                    lukuvinkkiService.vieTiedostoon(tiedostonNimi);
                 }
             } else {
                 System.out.println("Epäkelpo komento. Syötä komento uudelleen");

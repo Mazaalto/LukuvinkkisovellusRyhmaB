@@ -51,7 +51,7 @@ public class TallennusDaoTest {
 
     @Test
     public void lukuvinkitLuetaanOikeinTiedostosta() {
-        List<Lukuvinkki> lukuvinkit = dao.listaaKaikki();
+        List<Lukuvinkki> lukuvinkit = dao.listaaKaikkiLinkit();
         assertEquals(2, lukuvinkit.size());
 
         Lukuvinkki lukuvinkki1 = lukuvinkit.get(0);
