@@ -33,7 +33,7 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
 
  
     @Override
-    public void poistaLinkki(Linkki lukuvinkki) throws Exception {
+    public void poistaLinkki(Lukuvinkki lukuvinkki) throws Exception {
         for (Lukuvinkki l : lukuvinkit) {
             if (l.getOtsikko().equals(lukuvinkki.getOtsikko())) {
                 lukuvinkit.remove(l);
@@ -62,5 +62,9 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
         return lukuvinkit.size();
     }
 
+    @Override
+    public void merkkaaLuetuksi(Lukuvinkki lukuvinkki) throws Exception {
+        lukuvinkki.merkkaaLuetuksi();
+    }
     
 }
