@@ -46,7 +46,12 @@ public class TallennusDao implements LukuvinkkiDao {
             ResultSet vinkit = s.executeQuery("SELECT * FROM Linkit");
 
             while (vinkit.next()) {
-                lukuvinkit.add(new Linkki(vinkit.getString("otsikko"), vinkit.getString("url")));
+                int onkoluettu = vinkit.getInt("onkoLuettu");
+                Boolean luettu = false;
+                if (onkoluettu==1) {
+                    luettu=true;
+                }
+                lukuvinkit.add(new Linkki(vinkit.getString("otsikko"), vinkit.getString("url"), luettu, vinkit.getString("milloinLuettu")));
             }
 
         } catch (SQLException e) {
