@@ -36,7 +36,6 @@ public class TallennusDao implements LukuvinkkiDao {
         lukuvinkit = new ArrayList<>();
     }
 
-// Muutetaan myöhemmin listaamaan sekä linkit että kirjat.
     @Override
     public List<Lukuvinkki> listaaKaikki() {
         lukuvinkit.clear();
@@ -44,11 +43,11 @@ public class TallennusDao implements LukuvinkkiDao {
             Connection db = DriverManager.getConnection(tietokantaosoite);
             Statement s = db.createStatement();
             ResultSet vinkit = s.executeQuery("SELECT * FROM Linkit");
-         
+
             Connection db2 = DriverManager.getConnection(tietokantaosoite);
             Statement b = db2.createStatement();
             ResultSet kirjat = b.executeQuery("SELECT * FROM Kirjat");
-            
+
             while (vinkit.next()) {
                 lukuvinkit.add(new Linkki(vinkit.getString("otsikko"), vinkit.getString("url")));
             }
@@ -56,25 +55,23 @@ public class TallennusDao implements LukuvinkkiDao {
                 // Kirja(String otsikko, String kirjailija, int julkaisuvuosi, String julkaisija, String url)
                 lukuvinkit.add(new Kirja(kirjat.getString("otsikko"), kirjat.getString("kirjailija"), kirjat.getInt("julkaisuvuosi"), kirjat.getString("julkaisija"), kirjat.getString("url")));
             }
-            
-    
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return lukuvinkit;
     }
+
     public List<Lukuvinkki> listaaKaikkiLinkit() {
         lukuvinkit.clear();
         try {
             Connection db = DriverManager.getConnection(tietokantaosoite);
             Statement s = db.createStatement();
             ResultSet vinkit = s.executeQuery("SELECT * FROM Linkit");
-            
+
             while (vinkit.next()) {
                 lukuvinkit.add(new Linkki(vinkit.getString("otsikko"), vinkit.getString("url")));
             }
-    
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -96,22 +93,20 @@ public class TallennusDao implements LukuvinkkiDao {
         lukuvinkit.add(lukuvinkki);
 
     }
-    
-    
+
     //Vaihdetaan myöhemmin koskemaan pelkkiä linkkejä
-    @Override
-    public int LukuvinkkienMaara() {
+    public int LinkkienMaara() {
         int vinkkienMaara = -5;
         try {
             Connection db = DriverManager.getConnection(tietokantaosoite);
             Statement s = db.createStatement();
             ResultSet linkit = s.executeQuery("SELECT * FROM Linkit");
-    
+
             ArrayList<String> kaikki = new ArrayList<>();
-            while(linkit.next()) {
+            while (linkit.next()) {
                 kaikki.add(linkit.getString("otsikko"));
             }
-            
+
             vinkkienMaara = kaikki.size();
 
         } catch (SQLException ex) {
@@ -119,21 +114,27 @@ public class TallennusDao implements LukuvinkkiDao {
         }
         return vinkkienMaara;
     }
-    
+
+    //Vaihdetaan myöhemmin koskemaan pelkkiä linkkejä
+    @Override
+    public int LukuvinkkienMaara() {
+        return KirjojenLukumaara() + LinkkienMaara();
+    }
+
     @Override
     public int KirjojenLukumaara() {
         int maara = 0;
-        
+
         try {
             Connection db = DriverManager.getConnection(tietokantaosoite);
             Statement s = db.createStatement();
             ResultSet kirjat = s.executeQuery("SELECT * FROM Kirjat");
-    
+
             ArrayList<String> kaikki = new ArrayList<>();
-            while(kirjat.next()) {
+            while (kirjat.next()) {
                 kaikki.add(kirjat.getString("otsikko"));
             }
-            
+
             maara = kaikki.size();
 
         } catch (SQLException ex) {
@@ -146,23 +147,23 @@ public class TallennusDao implements LukuvinkkiDao {
     public void poistaLinkki(Linkki lukuvinkki) throws Exception {
         Connection db = DriverManager.getConnection(tietokantaosoite);
         PreparedStatement stmt = db.prepareStatement("DELETE FROM Linkit WHERE otsikko = ?");
-        
+
         stmt.setString(1, lukuvinkki.getOtsikko());
         stmt.execute();
         db.close();
         System.out.println("Lukuvinkki poistettu");
         lukuvinkit.remove(lukuvinkki);
     }
-    
+
     @Override
     public void tyhjennaTietokanta() throws SQLException {
         Connection db = DriverManager.getConnection(tietokantaosoite);
         PreparedStatement stmt = db.prepareStatement("DELETE FROM Linkit");
         stmt.execute();
-        
+
         PreparedStatement stmt2 = db.prepareStatement("DELETE FROM Kirjat");
         stmt2.execute();
-        
+
         db.close();
         System.out.println("Tietokanta tyhjennetty");
         lukuvinkit.removeAll(lukuvinkit);
@@ -177,7 +178,7 @@ public class TallennusDao implements LukuvinkkiDao {
         int julkaisuvuosi = lukuvinkki.getJulkaisuvuosi();
         String julkaisija = lukuvinkki.getJulkaisija();
         String url = lukuvinkki.getUrl();
-        
+
         stmt.setString(1, otsikko);
         stmt.setString(2, kirjailija);
         stmt.setInt(3, julkaisuvuosi);
@@ -196,11 +197,10 @@ public class TallennusDao implements LukuvinkkiDao {
             Connection db = DriverManager.getConnection(tietokantaosoite);
             Statement s = db.createStatement();
             ResultSet vinkit = s.executeQuery("SELECT * FROM Kirjat");
-            
+
             while (vinkit.next()) {
                 lukuvinkit.add(new Kirja(vinkit.getString("otsikko"), vinkit.getString("kirjailija"), vinkit.getInt("julkaisuvuosi"), vinkit.getString("julkaisija"), vinkit.getString("url")));
             }
-    
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -212,7 +212,7 @@ public class TallennusDao implements LukuvinkkiDao {
     public void poistaKirja(Kirja kirja) throws Exception {
         Connection db = DriverManager.getConnection(tietokantaosoite);
         PreparedStatement stmt = db.prepareStatement("DELETE FROM Kirjat WHERE otsikko = ?");
-        
+
         stmt.setString(1, kirja.getOtsikko());
         stmt.execute();
         db.close();
