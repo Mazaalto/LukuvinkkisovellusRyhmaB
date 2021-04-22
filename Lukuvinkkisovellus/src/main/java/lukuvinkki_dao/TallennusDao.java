@@ -182,4 +182,31 @@ public class TallennusDao implements LukuvinkkiDao {
         return lukuvinkit;
     }
 
+    @Override
+    public void tuoTiedostosta(String tiedostonPolku) throws Exception {
+        try {
+            Scanner lukija = new Scanner(new File(tiedostonPolku));
+            while (lukija.hasNextLine()) {
+                String[] osat = lukija.nextLine().split(";");
+                if (osat.length < 3) {
+                    Linkki uusi = new Linkki(osat[0], osat[1]);
+                    lukuvinkit.add(uusi); 
+                    this.lisaaLinkki(uusi);
+                } else {   
+                    Kirja uusi = new Kirja(osat[0], osat[1], Integer.valueOf(osat[2]), osat[3], osat[4]);
+                    lukuvinkit.add(uusi);
+                    this.lisaaKirja(uusi);
+                }
+            }
+        } catch (Exception e) {
+            FileWriter kirjoittaja = new FileWriter(new File(tiedostonPolku));
+            kirjoittaja.close();
+        }
+    }
+
+    @Override
+    public void vieTiedostoon() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

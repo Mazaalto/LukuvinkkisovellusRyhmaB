@@ -62,5 +62,15 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
         return lukuvinkit.size();
     }
 
+    @Override
+    public void tuoTiedostosta(String tiedosto) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void vieTiedostoon() throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }

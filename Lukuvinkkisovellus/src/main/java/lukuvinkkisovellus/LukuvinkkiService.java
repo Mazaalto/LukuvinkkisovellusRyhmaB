@@ -64,7 +64,12 @@ public class LukuvinkkiService {
     public void poistaLukuvinkki(Linkki lukuvinkki) throws Exception {
         this.lukuvinkkiDao.poistaLinkki(lukuvinkki);
     }
+    
     public void tyhjennaTietokanta() throws Exception {
         this.lukuvinkkiDao.tyhjennaTietokanta();
+    }
+    
+    public void tuoTiedostosta(String tiedosto) throws Exception {
+        this.lukuvinkkiDao.tuoTiedostosta(tiedosto);
     }
 }

@@ -22,4 +22,8 @@ public interface LukuvinkkiDao {
     void poistaLinkki(Linkki lukuvinkki) throws Exception;
     
     void tyhjennaTietokanta() throws Exception;
+    
+    void tuoTiedostosta(String tiedosto) throws Exception;
+    
+    void vieTiedostoon() throws Exception;
 }

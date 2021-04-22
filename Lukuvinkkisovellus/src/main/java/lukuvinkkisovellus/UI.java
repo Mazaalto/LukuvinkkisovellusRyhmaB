@@ -31,7 +31,7 @@ public class UI {
     private void printCommands() throws Exception {
         System.out.println("Valitse allaolevista komennoista numero ja paina enter");
         while (true) {
-            System.out.println("1 (lisää lukuvinkki), 2 (listaa lukuvinkit), 3 (poista lukuvinkki), 4 (kerro vinkkien määrä), 5 (poista kaikki lukuvinkit), tyhjä lopettaa");
+            System.out.println("1 (lisää lukuvinkki), 2 (listaa lukuvinkit), 3 (poista lukuvinkki), 4 (kerro vinkkien määrä), 5 (poista kaikki lukuvinkit), 6 (tuo/vie tiedostosta), tyhjä lopettaa");
             String komento = reader.nextLine();
             if (komento.equals("") || komento.equals(" ")) {
                 break;
@@ -40,12 +40,12 @@ public class UI {
                 String tyyppi = reader.nextLine();
                 
                 if (tyyppi.equals("1")) {
-                //Tähän toteutetaan lisääminen
-                System.out.println("Lisätään lukuvinkki (linkki)");
-                System.out.println("Anna otsikko: ");
-                String otsikko = reader.nextLine();
-                System.out.println("Anna url: ");
-                String url = reader.nextLine();
+                    //Tähän toteutetaan lisääminen
+                    System.out.println("Lisätään lukuvinkki (linkki)");
+                    System.out.println("Anna otsikko: ");
+                    String otsikko = reader.nextLine();
+                    System.out.println("Anna url: ");
+                    String url = reader.nextLine();
                 lukuvinkkiService.lisaaLinkki(new Linkki(otsikko, url));
                 } else if (tyyppi.equals("2")) {
                     System.out.println("Lisätään lukuvinkki (kirja)");
@@ -129,6 +129,12 @@ public class UI {
                 if (reader.nextLine().equals("1")) {
                     System.out.println("Kaikki lukuvinkit poistettu");
                     lukuvinkkiService.tyhjennaTietokanta();
+                }
+            } else if (komento.equals("6")) {
+                System.out.println("1 tuodaan tiedostosta, 2 viedään tiedostoon");
+                String komento2 = reader.nextLine();
+                if (komento2.equals("1")) {
+                    lukuvinkkiService.tuoTiedostosta("testi.txt");
                 }
             } else {
                 System.out.println("Epäkelpo komento. Syötä komento uudelleen");
