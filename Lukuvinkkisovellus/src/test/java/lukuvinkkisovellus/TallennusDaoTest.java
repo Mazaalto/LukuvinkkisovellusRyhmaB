@@ -102,6 +102,18 @@ public class TallennusDaoTest {
         dao.tyhjennaTietokanta();
         assertEquals(0, dao.listaaKaikki().size());
     }
+    
+    @Test
+    public void lukuvinkinLuetuksiMerkkaaminenToimii() throws Exception {
+        Kirja lisattava = new Kirja("k", "kir1", 1996, "tammi", "www.kirja.net");
+        dao.lisaaKirja(lisattava);
+        dao.merkkaaLuetuksi(lisattava);
+
+        List<Lukuvinkki> lukuvinkit = dao.listaaKaikki();
+        //otetaan viimeinen linkki ja katsotaan onko se luettu
+        Lukuvinkki linkki = lukuvinkit.get(lukuvinkit.size()-1);
+        assertEquals(true, linkki.onkoLuettu());
+    }
 
     @After
     public void tearDown() {
