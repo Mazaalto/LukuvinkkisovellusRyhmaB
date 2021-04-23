@@ -7,7 +7,3 @@ Scenario: yhden vinkin poisto onnistuu
     Then lukuvinkkiä ei löydy otsikolla "otsikko1"
 
 
-    
-
-
-

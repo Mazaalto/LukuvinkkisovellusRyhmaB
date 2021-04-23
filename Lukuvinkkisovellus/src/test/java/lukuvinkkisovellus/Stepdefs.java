@@ -32,8 +32,6 @@ public class Stepdefs {
         lukuvinkkiService.lisaaLinkki(new Linkki(otsikko, url));
     }
 
-    
-
     @Then("arvon tulisi olla {int}")
     public void arvonTulisiOlla(Integer val) {
         assertEquals(val.intValue(), lukuvinkkiDao.LukuvinkkienMaara());
@@ -56,7 +54,5 @@ public class Stepdefs {
         lukuvinkkiService.lisaaLinkki(new Linkki("uusiVinkki", "vinkki.url"));
         assertEquals(0, lukuvinkkiService.listaaOtsikonPerusteella(otsikko).size());
     }
-
-    
 
 }

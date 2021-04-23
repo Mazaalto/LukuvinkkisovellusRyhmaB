@@ -130,16 +130,4 @@ public class LukuvinkkiServiceTest {
         assertArrayEquals(lukuvinkit.toArray(), lukuvinkkiService.listaaOtsikonPerusteella("otsi").toArray());
     }
     
-    @Test
-    public void LuetuksiMerkattuLinkkiOnMerkkittyLuetuksi() throws Exception {
-        Linkki a = new Linkki("otsi", "testiurl.com");  
-        lukuvinkkiService.merkkaaLuetuksi(a);
-        assertTrue(a.luettu);
-    }
-    @Test
-    public void EiLuetuksiMerkattuOnkoLuettuOnFalse() {
-        Linkki a = new Linkki("otsi", "testiurl.com"); 
-        assertFalse(a.luettu);
-    }
-    
 }
