@@ -96,6 +96,16 @@ public class TallennusDaoTest {
         //lasketaan mukaan myös kirjat
         assertEquals(5, dao.LukuvinkkienMaara());        
     }
+    @Test
+    public void kirjanPoistoOnnistuu() throws Exception {
+        Kirja lisattava = new Kirja("k2", "kir2", 1999, "tammi", "www.kirja.net");
+        Linkki lisattava2 = new Linkki("uusi vinkki2", "www.uusi2.fi");
+        dao.lisaaKirja(lisattava);
+        dao.lisaaLinkki(lisattava2);
+        dao.poistaKirja(lisattava);
+        //lasketaan mukaan myös kirjat
+        assertEquals(5, dao.LukuvinkkienMaara());        
+    }
     
     @Test
     public void tietokannanTyhjentaminenOnnistuu() throws Exception {

@@ -62,6 +62,7 @@ public class TallennusDao implements LukuvinkkiDao {
         return lukuvinkit;
     }
 
+    @Override
     public List<Lukuvinkki> listaaKaikkiLinkit() {
         lukuvinkit.clear();
         try {
