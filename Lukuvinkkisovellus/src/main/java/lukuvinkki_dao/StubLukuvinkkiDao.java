@@ -34,7 +34,7 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
 
  
     @Override
-    public void poistaLinkki(Linkki lukuvinkki) throws Exception {
+    public void poistaLinkki(Lukuvinkki lukuvinkki) throws Exception {
         for (Lukuvinkki l : lukuvinkit) {
             if (l.getOtsikko().equals(lukuvinkki.getOtsikko())) {
                 lukuvinkit.remove(l);
@@ -78,6 +78,8 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
+    public void merkkaaLuetuksi(Lukuvinkki lukuvinkki) throws Exception {
+        lukuvinkki.merkkaaLuetuksi();
+    }
     
 }

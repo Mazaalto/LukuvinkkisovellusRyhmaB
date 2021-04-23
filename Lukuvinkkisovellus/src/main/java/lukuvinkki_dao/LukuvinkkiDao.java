@@ -20,9 +20,12 @@ public interface LukuvinkkiDao {
     
     int KirjojenLukumaara();
     
-    void poistaLinkki(Linkki lukuvinkki) throws Exception;
+    void poistaLinkki(Lukuvinkki lukuvinkki) throws Exception;
     
     void tyhjennaTietokanta() throws Exception;
 
     public void poistaKirja(Kirja kirja) throws Exception;
+    
+    void merkkaaLuetuksi(Lukuvinkki lukuvinkki) throws Exception;
+
 }

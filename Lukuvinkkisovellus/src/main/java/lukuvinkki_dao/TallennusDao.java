@@ -26,8 +26,8 @@ public class TallennusDao implements LukuvinkkiDao {
             Statement s = db.createStatement();
             System.out.println("Yhdistäminen tietokantaan onnistui!");
 
-            s.execute("CREATE TABLE IF NOT EXISTS Linkit (id INTEGER PRIMARY KEY, otsikko TEXT, url TEXT)");
-            s.execute("CREATE TABLE IF NOT EXISTS Kirjat (id INTEGER PRIMARY KEY, otsikko TEXT, kirjailija TEXT, julkaisuvuosi INTEGER, julkaisija TEXT, url TEXT)");
+            s.execute("CREATE TABLE IF NOT EXISTS Linkit (id INTEGER PRIMARY KEY, otsikko TEXT, url TEXT, onkoLuettu INTEGER, milloinLuettu TEXT)");
+            s.execute("CREATE TABLE IF NOT EXISTS Kirjat (id INTEGER PRIMARY KEY, otsikko TEXT, kirjailija TEXT, julkaisuvuosi INTEGER, julkaisija TEXT, url TEXT, onkoLuettu INTEGER, milloinLuettu TEXT)");
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -70,7 +70,12 @@ public class TallennusDao implements LukuvinkkiDao {
             ResultSet vinkit = s.executeQuery("SELECT * FROM Linkit");
 
             while (vinkit.next()) {
-                lukuvinkit.add(new Linkki(vinkit.getString("otsikko"), vinkit.getString("url")));
+                int onkoluettu = vinkit.getInt("onkoLuettu");
+                Boolean luettu = false;
+                if (onkoluettu==1) {
+                    luettu=true;
+                }
+                lukuvinkit.add(new Linkki(vinkit.getString("otsikko"), vinkit.getString("url"), luettu, vinkit.getString("milloinLuettu")));
             }
 
         } catch (SQLException e) {
@@ -82,11 +87,15 @@ public class TallennusDao implements LukuvinkkiDao {
     @Override
     public void lisaaLinkki(Linkki lukuvinkki) throws Exception {
         Connection db = DriverManager.getConnection(tietokantaosoite);
-        PreparedStatement stmt = db.prepareStatement("INSERT INTO Linkit(otsikko,url) VALUES(?,?)");
+        PreparedStatement stmt = db.prepareStatement("INSERT INTO Linkit(otsikko, url, onkoLuettu, milloinLuettu) VALUES(?,?,?,?)");
         String otsikko = lukuvinkki.getOtsikko();
         String url = lukuvinkki.getUrl();
+        int onkoLuettu = 0; // 0 = ei luettu, 1 = luettu;
+        String milloinLuettu = null;
         stmt.setString(1, otsikko);
         stmt.setString(2, url);
+        stmt.setInt(3, onkoLuettu);
+        stmt.setString(4, milloinLuettu);
         stmt.execute();
         db.close();
         System.out.println("Lisääminen onnistui");
@@ -114,6 +123,7 @@ public class TallennusDao implements LukuvinkkiDao {
         }
         return vinkkienMaara;
     }
+
 
     //Vaihdetaan myöhemmin koskemaan pelkkiä linkkejä
     @Override
@@ -144,7 +154,7 @@ public class TallennusDao implements LukuvinkkiDao {
     }
 
     @Override
-    public void poistaLinkki(Linkki lukuvinkki) throws Exception {
+    public void poistaLinkki(Lukuvinkki lukuvinkki) throws Exception {
         Connection db = DriverManager.getConnection(tietokantaosoite);
         PreparedStatement stmt = db.prepareStatement("DELETE FROM Linkit WHERE otsikko = ?");
 
@@ -158,10 +168,10 @@ public class TallennusDao implements LukuvinkkiDao {
     @Override
     public void tyhjennaTietokanta() throws SQLException {
         Connection db = DriverManager.getConnection(tietokantaosoite);
-        PreparedStatement stmt = db.prepareStatement("DELETE FROM Linkit");
+        PreparedStatement stmt = db.prepareStatement("DROP TABLE Linkit");
         stmt.execute();
 
-        PreparedStatement stmt2 = db.prepareStatement("DELETE FROM Kirjat");
+        PreparedStatement stmt2 = db.prepareStatement("DROP TABLE Kirjat");
         stmt2.execute();
 
         db.close();
@@ -172,18 +182,23 @@ public class TallennusDao implements LukuvinkkiDao {
     @Override
     public void lisaaKirja(Kirja lukuvinkki) throws Exception {
         Connection db = DriverManager.getConnection(tietokantaosoite);
-        PreparedStatement stmt = db.prepareStatement("INSERT INTO Kirjat(otsikko, kirjailija, julkaisuvuosi, julkaisija, url) VALUES(?,?,?,?,?)");
+        PreparedStatement stmt = db.prepareStatement("INSERT INTO Kirjat(otsikko, kirjailija, julkaisuvuosi, julkaisija, url, onkoLuettu, milloinLuettu) VALUES(?,?,?,?,?,?,?)");
         String otsikko = lukuvinkki.getOtsikko();
         String kirjailija = lukuvinkki.getKirjailija();
         int julkaisuvuosi = lukuvinkki.getJulkaisuvuosi();
         String julkaisija = lukuvinkki.getJulkaisija();
         String url = lukuvinkki.getUrl();
 
+        int onkoLuettu = 0; //0 = ei luettu, 1 = luettu;
+        String milloinLuettu = null;
+
         stmt.setString(1, otsikko);
         stmt.setString(2, kirjailija);
         stmt.setInt(3, julkaisuvuosi);
         stmt.setString(4, julkaisija);
         stmt.setString(5, url);
+        stmt.setInt(6, onkoLuettu);
+        stmt.setString(7, milloinLuettu);
         stmt.execute();
         db.close();
         System.out.println("Lisääminen onnistui");
@@ -218,6 +233,27 @@ public class TallennusDao implements LukuvinkkiDao {
         db.close();
         System.out.println("Lukuvinkki poistettu");
         lukuvinkit.remove(kirja);
+    }
+    
+    public void merkkaaLuetuksi(Lukuvinkki lukuvinkki) {
+        String otsikko = lukuvinkki.getOtsikko();
+        String milloinLuettu = lukuvinkki.getMilloinLuettu();
+        
+        try {
+            Connection db = DriverManager.getConnection(tietokantaosoite);
+            PreparedStatement stmt = db.prepareStatement("UPDATE Linkit SET onkoLuettu = ? WHERE otsikko = ?");
+            stmt.setInt(1, 1);            
+            stmt.setString(2, otsikko);
+            stmt.executeUpdate();
+
+            PreparedStatement stmt2 = db.prepareStatement("UPDATE Linkit SET milloinLuettu = ? WHERE otsikko = ?");
+            stmt2.setString(1, milloinLuettu);          
+            stmt2.setString(2, otsikko);
+            stmt2.executeUpdate();
+            db.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }

@@ -31,7 +31,7 @@ public class UI {
     private void printCommands() throws Exception {
         System.out.println("Valitse allaolevista komennoista numero ja paina enter");
         while (true) {
-            System.out.println("1 (lisää lukuvinkki), 2 (listaa lukuvinkit), 3 (poista lukuvinkki), 4 (kerro vinkkien määrä), 5 (poista kaikki lukuvinkit), tyhjä lopettaa");
+            System.out.println("1 (lisää lukuvinkki), 2 (listaa lukuvinkit), 3 (poista lukuvinkki), 4 (kerro vinkkien määrä), 5 (poista kaikki lukuvinkit), 6 (merkkaa luetuksi), tyhjä lopettaa");
             String komento = reader.nextLine();
             if (komento.equals("") || komento.equals(" ")) {
                 break;
@@ -85,45 +85,15 @@ public class UI {
                         lukuvinkit.stream().forEach(lv -> System.out.println(lv));
                     }
 
+                } else {
+                    List<Lukuvinkki> lukuvinkit2 = lukuvinkkiService.listaaKaikki();
+                    lukuvinkit2.stream().forEach(lv -> System.out.println(lv));
                 }
-                List<Lukuvinkki> lukuvinkit2 = lukuvinkkiService.listaaKaikki();
-                lukuvinkit2.stream().forEach(lv -> System.out.println(lv));
                 
             } else if (komento.equals("3")) {
                 //tähän toteutetaan lukuvinkkien poistaminen
-                List<Linkki> lukuvinkit = lukuvinkkiService.listaaKaikki();
-
-                if (lukuvinkit.isEmpty()) {
-                    System.out.println("Ei vielä yhtään lukuvinkkiä");
-                } else {
-                    System.out.println("Lukuvinkit tällä hetkellä:");
-
-                    lukuvinkit.stream().forEach(lv -> System.out.println(lv));
-                    while (true) {
-                        System.out.println("Anna otsikko, jonka haluat poistaa:");
-                        String otsikko = reader.nextLine();
-
-                        lukuvinkit = lukuvinkkiService.listaaOtsikonPerusteella(otsikko);
-
-                        lukuvinkit.stream().forEach(lv -> System.out.println(lv));
-                        if (lukuvinkit.isEmpty()) {
-                            System.out.println("Hakusanasi ei vastannut yhtäkään otsikkoa ohjelmassa");
-                        } else {
-                            break;
-                        }
-
-                    }
-                    if (lukuvinkit.size() == 1) {
-                        kysyPoistetaanko(lukuvinkit, reader, lukuvinkkiService);
-                    } else {
-                        while (lukuvinkit.size() > 1) {
-                            System.out.println("Tarkenna hakusanaa, hakusana otsikolle:");
-                            String otsikkotarkennus = reader.nextLine();
-                            lukuvinkit = lukuvinkkiService.listaaOtsikonPerusteella(otsikkotarkennus);
-                        }
-                        kysyPoistetaanko(lukuvinkit, reader, lukuvinkkiService);
-                    }
-                }
+                List<Lukuvinkki> lukuvinkit = haeOtsikonPerusteella("poistaa");
+                kysyPoistetaanko(lukuvinkit, reader, lukuvinkkiService);
 
             } else if (komento.equals("4")) {
                 System.out.println("Lukuvinkkien määrä järjestelmässä yhteensä: " + lukuvinkkiService.getLukuvinkkienMaara());
@@ -134,13 +104,51 @@ public class UI {
                     System.out.println("Kaikki lukuvinkit poistettu");
                     lukuvinkkiService.tyhjennaTietokanta();
                 }
+            } else if (komento.equals("6")) {
+                List<Lukuvinkki> lukuvinkit = haeOtsikonPerusteella("merkitä luetuksi");
+                merkitseLuetuksi(lukuvinkit.get(0));
             } else {
                 System.out.println("Epäkelpo komento. Syötä komento uudelleen");
             }
         }
     }
 
-    private void kysyPoistetaanko(List<Linkki> lukuvinkit, Scanner reader, LukuvinkkiService lukuvinkkiService) throws Exception {
+    private List<Lukuvinkki> haeOtsikonPerusteella(String mitaTehdaan) throws Exception {
+        List<Lukuvinkki> lukuvinkit = lukuvinkkiService.listaaKaikki();
+
+        if (lukuvinkit.isEmpty()) {
+            System.out.println("Ei vielä yhtään lukuvinkkiä");
+        } else {
+            System.out.println("Lukuvinkit tällä hetkellä:");
+            lukuvinkit.stream().forEach(lv -> System.out.println(lv));
+            while (true) {
+                System.out.println("Anna otsikko, jonka haluat " + mitaTehdaan + ":");
+                String otsikko = reader.nextLine();
+
+                lukuvinkit = lukuvinkkiService.listaaOtsikonPerusteella(otsikko);
+
+                lukuvinkit.stream().forEach(lv -> System.out.println(lv));
+                if (lukuvinkit.isEmpty()) {
+                    System.out.println("Hakusanasi ei vastannut yhtäkään otsikkoa ohjelmassa");
+                } else {
+                    break;
+                }
+            }
+            if (lukuvinkit.size() == 1) {
+                return lukuvinkit;
+            } else {
+                while (lukuvinkit.size() > 1) {
+                    System.out.println("Tarkenna hakusanaa, hakusana otsikolle:");
+                    String otsikkotarkennus = reader.nextLine();
+                    lukuvinkit = lukuvinkkiService.listaaOtsikonPerusteella(otsikkotarkennus);
+                }
+            }
+        }
+        return lukuvinkit;
+
+    }
+
+    private void kysyPoistetaanko(List<Lukuvinkki> lukuvinkit, Scanner reader, LukuvinkkiService lukuvinkkiService) throws Exception {
         System.out.println("Poistetaanko: " + lukuvinkit.get(0).toString());
         System.out.println("1 poistetaan, 2 ei poisteta");
         if (reader.nextLine().equals("1")) {
@@ -149,6 +157,15 @@ public class UI {
             if (reader.nextLine().equals("1")) {
                 lukuvinkkiService.poistaLukuvinkki(lukuvinkit.get(0));
             }
+        }
+    }
+
+    private void merkitseLuetuksi(Lukuvinkki lukuvinkki) throws Exception {
+        System.out.println("Merkitäänkö luetuksi: " + lukuvinkki.toString());
+        System.out.println("1 merkitään luetuksi, 2 ei merkitä luetuksi");
+        if (reader.nextLine().equals("1")) {
+            lukuvinkkiService.merkkaaLuetuksi(lukuvinkki);
+            System.out.println("Lukuvinkki on merkitty luetuksi");
         }
     }
 

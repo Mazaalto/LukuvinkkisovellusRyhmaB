@@ -18,12 +18,14 @@ public class LukuvinkkiService {
         return this.lukuvinkkiDao.listaaKaikki();
 
     }
+
     public List listaaKaikkiLinkit() {
 
         return this.lukuvinkkiDao.listaaKaikkiLinkit();
 
     }
     
+
     public List listaaKirjat() {
         return this.lukuvinkkiDao.listaaKirjat();
     }
@@ -33,46 +35,54 @@ public class LukuvinkkiService {
             System.out.println("Lukuvinkillä on oltava otsikko ja url.");
             return;
         }
-        
+
         this.lukuvinkkiDao.lisaaLinkki(lukuvinkki);
     }
-    
+
     public void lisaaKirja(Kirja lukuvinkki) throws Exception {
         if (lukuvinkki.otsikko.trim().isEmpty() || lukuvinkki.url.trim().isEmpty()) {
             System.out.println("Lukuvinkillä on oltava otsikko ja url");
             return;
         }
-        
+
         this.lukuvinkkiDao.lisaaKirja(lukuvinkki);
     }
 
     public List listaaOtsikonPerusteella(String otsikko) {
-        List<Linkki> lukuvinkit = listaaKaikki();
-        for (Iterator<Linkki> iterator = lukuvinkit.iterator(); iterator.hasNext(); ) {
+        List<Lukuvinkki> lukuvinkit = listaaKaikki();
+        for (Iterator<Lukuvinkki> iterator = lukuvinkit.iterator(); iterator.hasNext();) {
             String value = iterator.next().getOtsikko();
 
             if (!value.contains(otsikko)) {
                 iterator.remove();
             }
         }
-  
+
         return lukuvinkit;
     }
+
     public int getLukuvinkkienMaara() {
         return this.lukuvinkkiDao.LukuvinkkienMaara();
     }
-    
+
     public int getKirjojenMaara() {
         return this.lukuvinkkiDao.KirjojenLukumaara();
     }
-    
-    public void poistaLukuvinkki(Linkki lukuvinkki) throws Exception {
+
+    public void poistaLukuvinkki(Lukuvinkki lukuvinkki) throws Exception {
         this.lukuvinkkiDao.poistaLinkki(lukuvinkki);
     }
+
     public void poistaKirja(Kirja kirja) throws Exception {
         this.lukuvinkkiDao.poistaKirja(kirja);
     }
+
     public void tyhjennaTietokanta() throws Exception {
         this.lukuvinkkiDao.tyhjennaTietokanta();
+    }
+
+    public void merkkaaLuetuksi(Lukuvinkki lukuvinkki) throws Exception {
+        lukuvinkki.merkkaaLuetuksi();
+        this.lukuvinkkiDao.merkkaaLuetuksi(lukuvinkki);
     }
 }
