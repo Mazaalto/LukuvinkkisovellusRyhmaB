@@ -9,7 +9,7 @@ import lukuvinkkisovellus.Lukuvinkki;
 
 public class StubLukuvinkkiDao implements LukuvinkkiDao {
 
-    ArrayList<Lukuvinkki> lukuvinkit;
+    private ArrayList<Lukuvinkki> lukuvinkit;
 
     public StubLukuvinkkiDao() {
         this.lukuvinkit = new ArrayList<Lukuvinkki>();        
