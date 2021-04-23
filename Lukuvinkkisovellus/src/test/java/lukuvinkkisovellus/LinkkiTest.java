@@ -12,8 +12,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class LinkkiTest {
-    LukuvinkkiService lukuvinkkiService;
-    LukuvinkkiDao lukuvinkkiDao;
+    private LukuvinkkiService lukuvinkkiService;
+    private LukuvinkkiDao lukuvinkkiDao;
        
     @Before
     public void setUp() {
@@ -27,9 +27,20 @@ public class LinkkiTest {
         assertEquals("Vinkin otsikko: otsikko1, vinkin linkki: testiurl.com", vinkki);
     }
     
-    public void LukuvinkkiKirjanLisaysOnnistuu() throws Exception {
-        lukuvinkkiService.lisaaKirja(new Kirja("kirjanen", "incognito", 1997, "tammi", "www.kirja.net"));
-        String vinkki = lukuvinkkiDao.listaaKirjat().get(0).toString();          
-        assertEquals("Vinkin otsikko: kirjanen, kirjailija: incognito, julkaisuvuosi: 1997, julkaisija: tammi, linkki: www.kirja.net", vinkki);
+    @Test
+    public void luetunLinkintoStringOikeanlainen() throws Exception {
+        Linkki linkki = new Linkki("otsikko2", "testiurl.com");
+        lukuvinkkiService.lisaaLinkki(linkki);
+        lukuvinkkiService.merkkaaLuetuksi(linkki);
+        String vinkki = lukuvinkkiDao.listaaKaikki().get(0).toString();
+        assertEquals("Vinkin otsikko: otsikko2, linkki: testiurl.com, luettu " + linkki.getMilloinLuettu(), vinkki);
+    }
+    
+    @Test
+    public void kunLinkinMerkitseeLuetuksiNiinLuettuOnTrue() throws Exception {
+        Linkki linkki = new Linkki("Ohjelmointi", "www.ohjelmointi.con");
+        lukuvinkkiService.lisaaLinkki(linkki);
+        lukuvinkkiService.merkkaaLuetuksi(linkki);
+        assertTrue(linkki.onkoLuettu());
     }
 }

@@ -15,8 +15,8 @@ import static org.junit.Assert.*;
  */
 public class LukuvinkkiServiceTest {
     
-    LukuvinkkiService lukuvinkkiService;
-    LukuvinkkiDao lukuvinkkiDao;
+    private LukuvinkkiService lukuvinkkiService;
+    private LukuvinkkiDao lukuvinkkiDao;
        
     @Before
     public void setUp() {
@@ -141,4 +141,19 @@ public class LukuvinkkiServiceTest {
         assertFalse(a.onkoLuettu());
     }
     
+    @Test
+    public void kirjanPoistaminenOnnistuu() throws Exception {
+        Kirja kirja = new Kirja("Aakkoset", "incognito", 1500, "tammi", "www.aakkoset.net");
+        Kirja kirja2 = new Kirja("Keittokirja", "incognito", 2000, "wsoy", "www.keittokirja.net");
+        lukuvinkkiService.lisaaKirja(kirja);
+        lukuvinkkiService.lisaaKirja(kirja2);
+        lukuvinkkiService.poistaKirja(kirja);
+        assertEquals(0, lukuvinkkiService.listaaOtsikonPerusteella("Aakkoset").size());        
+    }
+    
+    @Test
+    public void tietokannanTyhjentaminenOnnistuu() throws Exception {
+        lukuvinkkiService.tyhjennaTietokanta();
+        assertEquals(0, lukuvinkkiService.listaaKaikki().size());
+    }  
 }
