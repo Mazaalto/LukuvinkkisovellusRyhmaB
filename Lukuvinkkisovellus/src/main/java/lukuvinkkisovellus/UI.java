@@ -31,7 +31,7 @@ public class UI {
     private void printCommands() throws Exception {
         System.out.println("Valitse allaolevista komennoista numero ja paina enter");
         while (true) {
-            System.out.println("1 (lisää lukuvinkki), 2 (listaa lukuvinkit), 3 (poista lukuvinkki), 4 (kerro vinkkien määrä), 5 (poista kaikki lukuvinkit), 6 (merkkaa luetuksi), tyhjä lopettaa");
+            System.out.println("1 (lisää lukuvinkki), 2 (listaa lukuvinkit), 3 (poista lukuvinkki), 4 (kerro vinkkien määrä), 5 (poista kaikki lukuvinkit), 6 (merkkaa luetuksi), 7 (tuo tai vie tiedostoon), (tyhjä lopettaa");
             String komento = reader.nextLine();
             if (komento.equals("") || komento.equals(" ")) {
                 break;
@@ -107,6 +107,7 @@ public class UI {
             } else if (komento.equals("6")) {
                 List<Lukuvinkki> lukuvinkit = haeOtsikonPerusteella("merkitä luetuksi");
                 merkitseLuetuksi(lukuvinkit.get(0));
+                
             } else if (komento.equals("7")) {
                 System.out.println("1 tuodaan tiedostosta, 2 viedään tiedostoon");
                 String komento2 = reader.nextLine();
@@ -114,6 +115,7 @@ public class UI {
                     System.out.println("Anna tiedoston nimi, josta luetaan:");
                     String tiedostonNimi = reader.nextLine();
                     lukuvinkkiService.tuoTiedostosta(tiedostonNimi);
+                    
                 } else if (komento2.equals("2")) {
                     System.out.println("Minkä niminen tiedosto luodaan?");
                     String tiedostonNimi = reader.nextLine();
