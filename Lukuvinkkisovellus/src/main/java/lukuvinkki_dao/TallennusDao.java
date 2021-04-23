@@ -2,6 +2,7 @@ package lukuvinkki_dao;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -254,6 +255,55 @@ public class TallennusDao implements LukuvinkkiDao {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+    
+    @Override
+    public void tuoTiedostosta(String tiedostonPolku) throws Exception {
+        try {
+            Scanner lukija = new Scanner(new File(tiedostonPolku));
+            while (lukija.hasNextLine()) {
+                String[] osat = lukija.nextLine().split(";");
+                if (osat.length < 3) {
+                    Linkki uusi = new Linkki(osat[0], osat[1]);
+                    lukuvinkit.add(uusi); 
+                    this.lisaaLinkki(uusi);
+                } else {   
+                    Kirja uusi = new Kirja(osat[0], osat[1], Integer.valueOf(osat[2]), osat[3], osat[4]);
+                    lukuvinkit.add(uusi);
+                    this.lisaaKirja(uusi);
+                }
+            }
+        } catch (Exception e) {
+            FileWriter kirjoittaja = new FileWriter(new File(tiedostonPolku));
+            kirjoittaja.close();
+        }
+    }
+
+    @Override
+    public void vieTiedostoon(String tiedosto) throws Exception {
+        List<Lukuvinkki> jarjestelmanVinkit = this.listaaKaikki();
+        
+        try {
+            File uusiTiedosto = new File(tiedosto);
+            if (!uusiTiedosto.createNewFile()) {
+                System.out.println("Tiedoston nimi on varattu");
+            }
+        } catch (IOException e) {
+            System.out.println("Tapahtui virhe.");
+            e.printStackTrace();
+        }
+        
+        this.tallennaTiedostoon(tiedosto, jarjestelmanVinkit);
+        
+        
+    }
+    
+    private void tallennaTiedostoon(String tiedosto, List<Lukuvinkki> vinkit) throws Exception {
+        try (FileWriter kirjoittaja = new FileWriter(new File(tiedosto))) {
+            for (Lukuvinkki vinkki: vinkit) {              
+                kirjoittaja.write(vinkki.toString() + "\n");
+            }           
+        } 
     }
 
 }

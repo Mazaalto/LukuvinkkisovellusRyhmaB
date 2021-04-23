@@ -27,5 +27,9 @@ public interface LukuvinkkiDao {
     public void poistaKirja(Kirja kirja) throws Exception;
     
     void merkkaaLuetuksi(Lukuvinkki lukuvinkki) throws Exception;
+    
+    void tuoTiedostosta(String tiedosto) throws Exception;
+    
+    void vieTiedostoon(String tiedosto) throws Exception;
 
 }

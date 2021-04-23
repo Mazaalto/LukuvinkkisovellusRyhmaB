@@ -85,4 +85,12 @@ public class LukuvinkkiService {
         lukuvinkki.merkkaaLuetuksi();
         this.lukuvinkkiDao.merkkaaLuetuksi(lukuvinkki);
     }
+    
+    public void tuoTiedostosta(String tiedosto) throws Exception {
+        this.lukuvinkkiDao.tuoTiedostosta(tiedosto);
+    }
+    
+    public void vieTiedostoon(String tiedosto) throws Exception {
+        this.lukuvinkkiDao.vieTiedostoon(tiedosto);
+    }
 }

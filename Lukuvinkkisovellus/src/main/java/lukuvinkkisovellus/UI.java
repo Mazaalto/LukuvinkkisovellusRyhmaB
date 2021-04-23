@@ -107,6 +107,18 @@ public class UI {
             } else if (komento.equals("6")) {
                 List<Lukuvinkki> lukuvinkit = haeOtsikonPerusteella("merkitä luetuksi");
                 merkitseLuetuksi(lukuvinkit.get(0));
+            } else if (komento.equals("7")) {
+                System.out.println("1 tuodaan tiedostosta, 2 viedään tiedostoon");
+                String komento2 = reader.nextLine();
+                if (komento2.equals("1")) {
+                    System.out.println("Anna tiedoston nimi, josta luetaan:");
+                    String tiedostonNimi = reader.nextLine();
+                    lukuvinkkiService.tuoTiedostosta(tiedostonNimi);
+                } else if (komento2.equals("2")) {
+                    System.out.println("Minkä niminen tiedosto luodaan?");
+                    String tiedostonNimi = reader.nextLine();
+                    lukuvinkkiService.vieTiedostoon(tiedostonNimi);
+                }
             } else {
                 System.out.println("Epäkelpo komento. Syötä komento uudelleen");
             }
