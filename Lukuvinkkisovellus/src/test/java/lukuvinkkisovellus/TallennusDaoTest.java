@@ -1,10 +1,6 @@
 package lukuvinkkisovellus;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
 import java.util.List;
 import lukuvinkki_dao.LukuvinkkiDao;
 import lukuvinkki_dao.TallennusDao;
@@ -19,8 +15,8 @@ public class TallennusDaoTest {
 
     @Rule
     public TemporaryFolder testFolder = new TemporaryFolder();
-    File lukuvinkkiFile;
-    LukuvinkkiDao dao;
+    private File lukuvinkkiFile;
+    private LukuvinkkiDao dao;
 
     @Before
     public void setUp() throws Exception {
@@ -30,8 +26,8 @@ public class TallennusDaoTest {
             dao.lisaaLinkki(new Linkki("otsake", "urli.com"));
             dao.lisaaLinkki(new Linkki("otsake2", "urli2.com"));
             
-            dao.lisaaKirja(new Kirja("k", "kir1", 1996, "tammi", "www.kirja.net"));
-            dao.lisaaKirja(new Kirja("k", "kir2", 1993, "tammi", "www.kirja.net"));
+            dao.lisaaKirja(new Kirja("k", "kir1", 1996, "tammi", "www.kirja.net", false, null));
+            dao.lisaaKirja(new Kirja("k", "kir2", 1993, "tammi", "www.kirja.net", false, null));
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -87,7 +83,7 @@ public class TallennusDaoTest {
     }
 
     @Test
-    public void lukuvinkinPoistoOnnistuu() throws Exception {
+    public void linkinPoistoOnnistuu() throws Exception {
         Linkki lisattava = new Linkki("uusi vinkki", "www.uusi.fi");
         Linkki lisattava2 = new Linkki("uusi vinkki2", "www.uusi2.fi");
         dao.lisaaLinkki(lisattava);
@@ -98,21 +94,20 @@ public class TallennusDaoTest {
     }
     
     @Test
-    public void tietokannanTyhjentaminenOnnistuu() throws Exception {
-        dao.tyhjennaTietokanta();
-        assertEquals(0, dao.listaaKaikki().size());
+    public void kirjanPoistoOnnistuu() throws Exception {
+        Kirja lisattava = new Kirja("kirja", "kirjailija", 1997, "tammi", "www.kirja.net");
+        Kirja lisattava2 = new Kirja("kirja2", "kirjailija2", 1992, "tammi", "www.kirja.net");
+        dao.lisaaKirja(lisattava);
+        dao.lisaaKirja(lisattava2);
+        dao.poistaKirja(lisattava);
+        //lasketaan mukaan myös kirjat
+        assertEquals(5, dao.LukuvinkkienMaara());
     }
     
     @Test
-    public void lukuvinkinLuetuksiMerkkaaminenToimii() throws Exception {
-        Kirja lisattava = new Kirja("k", "kir1", 1996, "tammi", "www.kirja.net");
-        dao.lisaaKirja(lisattava);
-        dao.merkkaaLuetuksi(lisattava);
-
-        List<Lukuvinkki> lukuvinkit = dao.listaaKaikki();
-        //otetaan viimeinen linkki ja katsotaan onko se luettu
-        Lukuvinkki linkki = lukuvinkit.get(lukuvinkit.size()-1);
-        assertEquals(true, linkki.onkoLuettu());
+    public void tietokannanTyhjentaminenOnnistuu() throws Exception {
+        dao.tyhjennaTietokanta();
+        assertEquals(0, dao.listaaKaikki().size());
     }
 
     @After
