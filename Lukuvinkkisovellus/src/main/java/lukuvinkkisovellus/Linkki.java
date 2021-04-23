@@ -5,10 +5,10 @@ import java.util.Date;
 
 public class Linkki implements Lukuvinkki {
 
-    String otsikko;
-    String url;
-    Boolean luettu;
-    String merkittyLuetuksi;
+    private String otsikko;
+    private String url;
+    private Boolean luettu;
+    private String merkittyLuetuksi;
 
     public Linkki(String otsikko, String url) {
         this.otsikko = otsikko;
