@@ -102,6 +102,22 @@ public class TallennusDaoTest {
         dao.tyhjennaTietokanta();
         assertEquals(0, dao.listaaKaikki().size());
     }
+    @Test
+    public void poistaKirjaToimii() throws Exception {
+        Kirja lisattava = new Kirja("a", "abc", 2021, "tammi", "www.kirjat.net");
+        dao.lisaaKirja(lisattava);
+        dao.poistaKirja(lisattava);
+        //lasketaan mukaan myös kirjat
+        assertEquals(4, dao.LukuvinkkienMaara());
+    }
+    @Test
+    public void merkkaaLuetuksiToimii() throws Exception {
+        Kirja lisattava = new Kirja("a", "abc", 2021, "tammi", "www.kirjat.net");
+        dao.lisaaKirja(lisattava);
+        dao.poistaKirja(lisattava);
+        //lasketaan mukaan myös kirjat
+        assertEquals(4, dao.LukuvinkkienMaara());
+    }
 
     @After
     public void tearDown() {
