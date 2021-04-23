@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author anttihalmetoja, jullebli
+ * @author anttihalmetoja, jullebli, mazaalto
  */
 public class LukuvinkkiServiceTest {
     
@@ -98,6 +98,13 @@ public class LukuvinkkiServiceTest {
         int maaraAluksi = lukuvinkkiService.getLukuvinkkienMaara();
         lukuvinkkiService.lisaaLinkki(new Linkki("otsikko1", "testiurl.com"));               
         assertEquals(maaraAluksi + 1, lukuvinkkiDao.LukuvinkkienMaara());
+    }
+    @Test
+    public void LukuvinkinLisaaminenKasvattaaLukuvinkkienMaaraaJosLisataanMyosKirja() throws Exception {
+        int maaraAluksi = lukuvinkkiService.getLukuvinkkienMaara();
+        lukuvinkkiService.lisaaLinkki(new Linkki("otsikko1", "testiurl.com"));  
+        lukuvinkkiService.lisaaKirja(new Kirja("kirja", "kirjailija", 1997, "tammi", "www.kirja.net"));
+        assertEquals(maaraAluksi + 2, lukuvinkkiDao.LukuvinkkienMaara());
     }
     
     @Test

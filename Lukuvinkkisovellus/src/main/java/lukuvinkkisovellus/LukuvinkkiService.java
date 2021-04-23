@@ -19,6 +19,13 @@ public class LukuvinkkiService {
 
     }
 
+    public List listaaKaikkiLinkit() {
+
+        return this.lukuvinkkiDao.listaaKaikkiLinkit();
+
+    }
+    
+
     public List listaaKirjat() {
         return this.lukuvinkkiDao.listaaKirjat();
     }
@@ -42,8 +49,8 @@ public class LukuvinkkiService {
     }
 
     public List listaaOtsikonPerusteella(String otsikko) {
-        List<Linkki> lukuvinkit = listaaKaikki();
-        for (Iterator<Linkki> iterator = lukuvinkit.iterator(); iterator.hasNext();) {
+        List<Lukuvinkki> lukuvinkit = listaaKaikki();
+        for (Iterator<Lukuvinkki> iterator = lukuvinkit.iterator(); iterator.hasNext();) {
             String value = iterator.next().getOtsikko();
 
             if (!value.contains(otsikko)) {
@@ -64,6 +71,10 @@ public class LukuvinkkiService {
 
     public void poistaLukuvinkki(Lukuvinkki lukuvinkki) throws Exception {
         this.lukuvinkkiDao.poistaLinkki(lukuvinkki);
+    }
+
+    public void poistaKirja(Kirja kirja) throws Exception {
+        this.lukuvinkkiDao.poistaKirja(kirja);
     }
 
     public void tyhjennaTietokanta() throws Exception {

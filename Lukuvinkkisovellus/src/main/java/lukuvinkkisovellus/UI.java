@@ -62,12 +62,12 @@ public class UI {
                     lukuvinkkiService.lisaaKirja(new Kirja(otsikko, kirjailija, julkaisuvuosi, julkaisija, url));
                 }
             } else if (komento.equals("2")) {
-                System.out.println("1 (linkit), 2 (kirjat)");
+                System.out.println("1 (linkit), 2 (kirjat), muuten (listaa kaikki)");
                 //tähän toteutetaan kaikkien lukuvinkkien tulostus
                 String kategoria = reader.nextLine();
                 if (kategoria.equals("1")) {
 
-                    List<Lukuvinkki> lukuvinkit = lukuvinkkiService.listaaKaikki();
+                    List<Lukuvinkki> lukuvinkit = lukuvinkkiService.listaaKaikkiLinkit();
 
                     if (lukuvinkit.isEmpty()) {
                         System.out.println("ei tallennettuja vinkkejä.");
@@ -84,7 +84,12 @@ public class UI {
                         System.out.println("Listataan lukuvinkit (kirjat)");
                         lukuvinkit.stream().forEach(lv -> System.out.println(lv));
                     }
+
+                } else {
+                    List<Lukuvinkki> lukuvinkit2 = lukuvinkkiService.listaaKaikki();
+                    lukuvinkit2.stream().forEach(lv -> System.out.println(lv));
                 }
+                
             } else if (komento.equals("3")) {
                 //tähän toteutetaan lukuvinkkien poistaminen
                 List<Lukuvinkki> lukuvinkit = haeOtsikonPerusteella("poistaa");
