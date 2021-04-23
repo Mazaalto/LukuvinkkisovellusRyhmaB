@@ -40,8 +40,9 @@ public class TallennusDaoTest {
     }
 
     @Test
+    //Nyt lukuvinkkien määrään lasketaan sekä kirjat että linkit
     public void lukuvinkkienMaaraOnOikea() {        
-        assertEquals(2, dao.LukuvinkkienMaara());
+        assertEquals(4, dao.LukuvinkkienMaara());
     }
     
     @Test
@@ -51,7 +52,7 @@ public class TallennusDaoTest {
 
     @Test
     public void lukuvinkitLuetaanOikeinTiedostosta() {
-        List<Lukuvinkki> lukuvinkit = dao.listaaKaikki();
+        List<Lukuvinkki> lukuvinkit = dao.listaaKaikkiLinkit();
         assertEquals(2, lukuvinkit.size());
 
         Lukuvinkki lukuvinkki1 = lukuvinkit.get(0);
@@ -79,7 +80,8 @@ public class TallennusDaoTest {
         Linkki lisattava = new Linkki("uusi vinkki", "www.uusi.fi");
         dao.lisaaLinkki(lisattava);
         List<Lukuvinkki> lukuvinkit = dao.listaaKaikki();
-        assertEquals(3, dao.LukuvinkkienMaara());
+        //nyt myös kirjat lasketaan lukuvinkkien määrään
+        assertEquals(5, dao.LukuvinkkienMaara());
         Lukuvinkki lukuvinkki = lukuvinkit.get(2);
         assertEquals("Vinkin otsikko: uusi vinkki, vinkin linkki: www.uusi.fi", lukuvinkki.toString());
     }
@@ -90,8 +92,9 @@ public class TallennusDaoTest {
         Linkki lisattava2 = new Linkki("uusi vinkki2", "www.uusi2.fi");
         dao.lisaaLinkki(lisattava);
         dao.lisaaLinkki(lisattava2);
-        dao.poistaLinkki(lisattava);        
-        assertEquals(3, dao.LukuvinkkienMaara());        
+        dao.poistaLinkki(lisattava);
+        //lasketaan mukaan myös kirjat
+        assertEquals(5, dao.LukuvinkkienMaara());        
     }
     
     @Test

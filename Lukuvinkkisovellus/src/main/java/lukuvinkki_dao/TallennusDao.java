@@ -36,9 +36,33 @@ public class TallennusDao implements LukuvinkkiDao {
         lukuvinkit = new ArrayList<>();
     }
 
-// Muutetaan myöhemmin listaamaan sekä linkit että kirjat.
     @Override
     public List<Lukuvinkki> listaaKaikki() {
+        lukuvinkit.clear();
+        try {
+            Connection db = DriverManager.getConnection(tietokantaosoite);
+            Statement s = db.createStatement();
+            ResultSet vinkit = s.executeQuery("SELECT * FROM Linkit");
+
+            Connection db2 = DriverManager.getConnection(tietokantaosoite);
+            Statement b = db2.createStatement();
+            ResultSet kirjat = b.executeQuery("SELECT * FROM Kirjat");
+
+            while (vinkit.next()) {
+                lukuvinkit.add(new Linkki(vinkit.getString("otsikko"), vinkit.getString("url")));
+            }
+            while (kirjat.next()) {
+                // Kirja(String otsikko, String kirjailija, int julkaisuvuosi, String julkaisija, String url)
+                lukuvinkit.add(new Kirja(kirjat.getString("otsikko"), kirjat.getString("kirjailija"), kirjat.getInt("julkaisuvuosi"), kirjat.getString("julkaisija"), kirjat.getString("url")));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return lukuvinkit;
+    }
+
+    public List<Lukuvinkki> listaaKaikkiLinkit() {
         lukuvinkit.clear();
         try {
             Connection db = DriverManager.getConnection(tietokantaosoite);
@@ -80,8 +104,7 @@ public class TallennusDao implements LukuvinkkiDao {
     }
 
     //Vaihdetaan myöhemmin koskemaan pelkkiä linkkejä
-    @Override
-    public int LukuvinkkienMaara() {
+    public int LinkkienMaara() {
         int vinkkienMaara = -5;
         try {
             Connection db = DriverManager.getConnection(tietokantaosoite);
@@ -99,6 +122,13 @@ public class TallennusDao implements LukuvinkkiDao {
             Logger.getLogger(TallennusDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return vinkkienMaara;
+    }
+
+
+    //Vaihdetaan myöhemmin koskemaan pelkkiä linkkejä
+    @Override
+    public int LukuvinkkienMaara() {
+        return KirjojenLukumaara() + LinkkienMaara();
     }
 
     @Override
@@ -138,10 +168,10 @@ public class TallennusDao implements LukuvinkkiDao {
     @Override
     public void tyhjennaTietokanta() throws SQLException {
         Connection db = DriverManager.getConnection(tietokantaosoite);
-        PreparedStatement stmt = db.prepareStatement("DELETE FROM Linkit");
+        PreparedStatement stmt = db.prepareStatement("DROP TABLE Linkit");
         stmt.execute();
 
-        PreparedStatement stmt2 = db.prepareStatement("DELETE FROM Kirjat");
+        PreparedStatement stmt2 = db.prepareStatement("DROP TABLE Kirjat");
         stmt2.execute();
 
         db.close();
@@ -158,8 +188,10 @@ public class TallennusDao implements LukuvinkkiDao {
         int julkaisuvuosi = lukuvinkki.getJulkaisuvuosi();
         String julkaisija = lukuvinkki.getJulkaisija();
         String url = lukuvinkki.getUrl();
+
         int onkoLuettu = 0; //0 = ei luettu, 1 = luettu;
         String milloinLuettu = null;
+
         stmt.setString(1, otsikko);
         stmt.setString(2, kirjailija);
         stmt.setInt(3, julkaisuvuosi);
@@ -192,6 +224,17 @@ public class TallennusDao implements LukuvinkkiDao {
     }
 
     @Override
+    public void poistaKirja(Kirja kirja) throws Exception {
+        Connection db = DriverManager.getConnection(tietokantaosoite);
+        PreparedStatement stmt = db.prepareStatement("DELETE FROM Kirjat WHERE otsikko = ?");
+
+        stmt.setString(1, kirja.getOtsikko());
+        stmt.execute();
+        db.close();
+        System.out.println("Lukuvinkki poistettu");
+        lukuvinkit.remove(kirja);
+    }
+    
     public void merkkaaLuetuksi(Lukuvinkki lukuvinkki) {
         String otsikko = lukuvinkki.getOtsikko();
         String milloinLuettu = lukuvinkki.getMilloinLuettu();
