@@ -31,7 +31,12 @@ public class UI {
     private void printCommands() throws Exception {
         System.out.println("Valitse allaolevista komennoista numero ja paina enter");
         while (true) {
-            System.out.println("1 (lisää lukuvinkki), 2 (listaa lukuvinkit), 3 (poista lukuvinkki), 4 (kerro vinkkien määrä), 5 (poista kaikki lukuvinkit), 6 (merkkaa luetuksi), 7 (tuo tai vie tiedostoon), (tyhjä lopettaa");
+            System.out.println("1 (lisää lukuvinkki), 2 (listaa lukuvinkit), "
+                    + "3 (poista lukuvinkki), 4 (kerro vinkkien määrä), "
+                    + "5 (poista kaikki lukuvinkit), 6 (merkkaa luetuksi), "
+                    + "7 (tuo tai vie tiedostoon), 8 (hae lukuvinkkejä otsikolla), "
+                    + "(tyhjä lopettaa");
+            
             String komento = reader.nextLine();
             if (komento.equals("") || komento.equals(" ")) {
                 break;
@@ -121,9 +126,18 @@ public class UI {
                     String tiedostonNimi = reader.nextLine();
                     lukuvinkkiService.vieTiedostoon(tiedostonNimi);
                 }
+            } else if (komento.equals("8")) {
+                System.out.println("Anna hakusana: ");
+                String hakusana = reader.nextLine();
+                List<Lukuvinkki> lukuvinkit = lukuvinkkiService.listaaOtsikonPerusteella(hakusana);
+                lukuvinkit.stream().forEach(lv -> System.out.println(lv));
+                if (lukuvinkit.isEmpty()) {
+                    System.out.println("Hakusanasi ei vastannut yhtäkään otsikkoa ohjelmassa");
+                }
             } else {
                 System.out.println("Epäkelpo komento. Syötä komento uudelleen");
             }
+            System.out.println("");
         }
     }
 
