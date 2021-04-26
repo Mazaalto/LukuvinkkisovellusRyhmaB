@@ -73,8 +73,8 @@ public class TallennusDao implements LukuvinkkiDao {
             while (vinkit.next()) {
                 int onkoluettu = vinkit.getInt("onkoLuettu");
                 Boolean luettu = false;
-                if (onkoluettu==1) {
-                    luettu=true;
+                if (onkoluettu == 1) {
+                    luettu = true;
                 }
                 lukuvinkit.add(new Linkki(vinkit.getString("otsikko"), vinkit.getString("url"), luettu, vinkit.getString("milloinLuettu")));
             }
@@ -124,7 +124,6 @@ public class TallennusDao implements LukuvinkkiDao {
         }
         return vinkkienMaara;
     }
-
 
     //Vaihdetaan myöhemmin koskemaan pelkkiä linkkejä
     @Override
@@ -235,20 +234,20 @@ public class TallennusDao implements LukuvinkkiDao {
         System.out.println("Lukuvinkki poistettu");
         lukuvinkit.remove(kirja);
     }
-    
+
     public void merkkaaLuetuksi(Lukuvinkki lukuvinkki) {
         String otsikko = lukuvinkki.getOtsikko();
         String milloinLuettu = lukuvinkki.getMilloinLuettu();
-        
+
         try {
             Connection db = DriverManager.getConnection(tietokantaosoite);
             PreparedStatement stmt = db.prepareStatement("UPDATE Linkit SET onkoLuettu = ? WHERE otsikko = ?");
-            stmt.setInt(1, 1);            
+            stmt.setInt(1, 1);
             stmt.setString(2, otsikko);
             stmt.executeUpdate();
 
             PreparedStatement stmt2 = db.prepareStatement("UPDATE Linkit SET milloinLuettu = ? WHERE otsikko = ?");
-            stmt2.setString(1, milloinLuettu);          
+            stmt2.setString(1, milloinLuettu);
             stmt2.setString(2, otsikko);
             stmt2.executeUpdate();
             db.close();
@@ -256,7 +255,7 @@ public class TallennusDao implements LukuvinkkiDao {
             System.out.println(e.getMessage());
         }
     }
-    
+
     @Override
     public void tuoTiedostosta(String tiedostonPolku) throws Exception {
         try {
@@ -265,9 +264,9 @@ public class TallennusDao implements LukuvinkkiDao {
                 String[] osat = lukija.nextLine().split(";");
                 if (osat.length < 3) {
                     Linkki uusi = new Linkki(osat[0], osat[1]);
-                    lukuvinkit.add(uusi); 
+                    lukuvinkit.add(uusi);
                     this.lisaaLinkki(uusi);
-                } else {   
+                } else {
                     Kirja uusi = new Kirja(osat[0], osat[1], Integer.valueOf(osat[2]), osat[3], osat[4]);
                     lukuvinkit.add(uusi);
                     this.lisaaKirja(uusi);
@@ -282,7 +281,7 @@ public class TallennusDao implements LukuvinkkiDao {
     @Override
     public void vieTiedostoon(String tiedosto) throws Exception {
         List<Lukuvinkki> jarjestelmanVinkit = this.listaaKaikki();
-        
+
         try {
             File uusiTiedosto = new File(tiedosto);
             if (!uusiTiedosto.createNewFile()) {
@@ -292,18 +291,19 @@ public class TallennusDao implements LukuvinkkiDao {
             System.out.println("Tapahtui virhe.");
             e.printStackTrace();
         }
-        
+
         this.tallennaTiedostoon(tiedosto, jarjestelmanVinkit);
-        
-        
+
     }
-    
+
     private void tallennaTiedostoon(String tiedosto, List<Lukuvinkki> vinkit) throws Exception {
-        try (FileWriter kirjoittaja = new FileWriter(new File(tiedosto))) {
-            for (Lukuvinkki vinkki: vinkit) {              
-                kirjoittaja.write(vinkki.toString() + "\n");
-            }           
-        } 
+        FileWriter kirjoittaja = new FileWriter(new File(tiedosto));
+
+        for (Lukuvinkki vinkki : vinkit) {
+            System.out.println("tallennaTiedostoon kirjoittaa");
+            kirjoittaja.write(vinkki.toString() + "\n");
+        }
+        kirjoittaja.close();
     }
 
 }
