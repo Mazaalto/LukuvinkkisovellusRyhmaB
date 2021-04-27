@@ -235,6 +235,7 @@ public class TallennusDao implements LukuvinkkiDao {
         lukuvinkit.remove(kirja);
     }
 
+    @Override
     public void merkkaaLuetuksi(Lukuvinkki lukuvinkki) {
         String otsikko = lukuvinkki.getOtsikko();
         String milloinLuettu = lukuvinkki.getMilloinLuettu();
