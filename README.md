@@ -7,6 +7,8 @@ Ohjelmistotuotannon 1 op harjoitustyö (miniprojekti). Javaa, Scrumia ja ketter�
 
 [Ryhmän product backlog ja sprintin board](https://docs.google.com/spreadsheets/d/1jNElPr7eKHpAMRChD1hGu87NYBHCjy90qCQLWPjbxsk/edit#gid=0)
 
+Linkki [loppuraporttiin](https://github.com/Mazaalto/LukuvinkkisovellusRyhmaB/blob/main/RAPORTTI.md).
+
 ## Asennusohje
 
 Käyttääksesi sovellusta sinun täytyy kopioida tämä repositorio koneellesi. Mene terminaalissa hakemistoon johon haluat sijoittaa repositorion kopion. Aja hakemiston sisällä komento
