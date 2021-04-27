@@ -5,14 +5,15 @@ import java.util.Date;
 
 public class Kirja implements Lukuvinkki {
 
-    String otsikko;
-    String kirjailija;
-    String julkaisija;
-    int julkaisuvuosi;
-    String url;
-    Boolean luettu;
-    String merkittyLuetuksi;
+    private String otsikko;
+    private String kirjailija;
+    private String julkaisija;
+    private int julkaisuvuosi;
+    private String url;
+    private Boolean luettu;
+    private String merkittyLuetuksi;
 
+    
     public Kirja(String otsikko, String kirjailija, int julkaisuvuosi, String julkaisija, String url) {
         this.otsikko = otsikko;
         this.kirjailija = kirjailija;
@@ -20,6 +21,7 @@ public class Kirja implements Lukuvinkki {
         this.julkaisuvuosi = julkaisuvuosi;
         this.url = url;
         this.luettu = false;
+        this.merkittyLuetuksi = null;
     }
 
     public Kirja(String otsikko, String kirjailija, int julkaisuvuosi, String julkaisija, String url, Boolean luettu, String merkittyLuetuksi) {

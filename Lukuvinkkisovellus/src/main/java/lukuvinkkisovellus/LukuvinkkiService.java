@@ -31,7 +31,7 @@ public class LukuvinkkiService {
     }
 
     public void lisaaLinkki(Linkki lukuvinkki) throws Exception {
-        if (lukuvinkki.otsikko.trim().isEmpty() || lukuvinkki.url.trim().isEmpty()) {
+        if (lukuvinkki.getOtsikko().trim().isEmpty() || lukuvinkki.getUrl().trim().isEmpty()) {
             System.out.println("Lukuvinkillä on oltava otsikko ja url.");
             return;
         }
@@ -40,7 +40,7 @@ public class LukuvinkkiService {
     }
 
     public void lisaaKirja(Kirja lukuvinkki) throws Exception {
-        if (lukuvinkki.otsikko.trim().isEmpty() || lukuvinkki.url.trim().isEmpty()) {
+        if (lukuvinkki.getOtsikko().trim().isEmpty() || lukuvinkki.getUrl().trim().isEmpty()) {
             System.out.println("Lukuvinkillä on oltava otsikko ja url");
             return;
         }
