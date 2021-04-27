@@ -11,7 +11,6 @@ Feature: Käyttäjänä haluan lisätä lukuvinkin otsikolla ja urlilla
     And lukuvinkki otsikolla "otsikko2" ja urlilla "testiurl2.com" lisätään
     Then arvon tulisi olla 2
 
-
   Scenario: listaus yhdellä vinkillä onnistuu
     Given lukuvinkkisovellus is initialized
     When lukuvinkki otsikolla "otsikko1" ja urlilla "testiurl.com" lisätään

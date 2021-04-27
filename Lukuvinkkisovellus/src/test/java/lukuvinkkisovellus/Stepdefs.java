@@ -56,7 +56,26 @@ public class Stepdefs {
         lukuvinkkiService.lisaaLinkki(new Linkki("uusiVinkki", "vinkki.url"));
         assertEquals(0, lukuvinkkiService.listaaOtsikonPerusteella(otsikko).size());
     }
-
+    @When("lukuvinkki otsikolla {string} ja urlilla {string} merkitään luetuksi")
+    public void lukuvinkkiMerkitaanLuetuksi(String otsikko, String url) throws Exception {
+        Lukuvinkki lukuvinkki = new Linkki(otsikko, url);
+        lukuvinkkiService.merkkaaLuetuksi(lukuvinkki);     
+    }
+    @Then("lukuvinkki otsikolla {string} ja urlilla {string} on merkitty luetuksi")
+    public void lukuvinkkiOnLuettu(String otsikko, String url) throws Exception {
+        Lukuvinkki lukuvinkki = new Linkki(otsikko, url);
+        lukuvinkkiService.merkkaaLuetuksi(lukuvinkki);     
+        assertTrue(lukuvinkki.onkoLuettu());
+    }
+    @When("haetaan lukuvinkkiä otsikolla {string} ja urlilla {string}")
+    public void lukuvinkkiHaetaanOtsikolla(String otsikko, String url) {
+        lukuvinkkiService.listaaOtsikonPerusteella(otsikko);
+    }
     
-
+    @Then("lukuvinkki otsikolla {string} ja urlilla {string} palauttaa tekstin {string}")
+    public void vainYksiOtsikkoPalautetaan(String otsikko, String url, String teksti) throws Exception {
+        lukuvinkkiService.lisaaLinkki(new Linkki(otsikko, url));
+        List<Lukuvinkki> lista = lukuvinkkiService.listaaOtsikonPerusteella(otsikko);
+        assertTrue(lukuvinkkiService.listaaOtsikonPerusteella(otsikko).toString().contains(otsikko));
+    }
 }
