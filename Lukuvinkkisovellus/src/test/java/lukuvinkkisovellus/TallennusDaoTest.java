@@ -151,6 +151,27 @@ public class TallennusDaoTest {
         byte[] tuotu = Files.readAllBytes(tuodaan.toPath());
         assertArrayEquals(verrattava, tuotu);
     }
+    
+    @Test
+    public void tiedostostaTuominenToimii() throws Exception {
+        File tuotava = testFolder.newFile("uusi");
+        
+        try {
+            FileWriter kirjoittaja = new FileWriter(tuotava);
+            
+            kirjoittaja.write("tuotavaVinkki;tuotavaUrli\n");
+            kirjoittaja.write("tuotavaKirja;tuotavaKirjailija;1979;tuotavaTammi;tuotavaUrli\n");           
+            
+            kirjoittaja.close();
+        } catch (IOException e) {
+            System.out.println("Tapahtui virhe.");
+            e.printStackTrace();
+        }
+        
+        dao.tuoTiedostosta(tuotava.getAbsolutePath());
+        
+        assertEquals(6, dao.listaaKaikki().size());
+    }
 
     @After
     public void tearDown() {
