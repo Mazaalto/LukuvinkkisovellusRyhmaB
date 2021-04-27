@@ -130,10 +130,9 @@ public class TallennusDaoTest {
     @Test
     public void vieTiedostoonToimii() throws Exception {
         System.out.println("vieTiedostoonToimii() testi");
-        File tuodaan = testFolder.newFile("vieTiedostoonTesti.txt");
         File vertailtava = testFolder.newFile("vertailtava");
 
-        dao.vieTiedostoon(tuodaan.getAbsolutePath());
+        File tuodaan = dao.vieTiedostoon();
         System.out.println(tuodaan.getName());
 
         try {
