@@ -2,15 +2,18 @@
 
 Ryhmän jäsenet:
 
-Matias Aalto-Setälä
 
-Valtteri Andström
+Matias Aalto-Setälä (github mazaalto)
 
-Eevi Bengs
+Valtteri Andström (github nettivastaava)
 
-Julia Bergman
+Eevi Bengs (github eevib)
 
-Antti Halmetoja
+Julia Bergman (github jullebli) 
+
+Antti Halmetoja (github AnttiHal)
+
+
 
 
 
