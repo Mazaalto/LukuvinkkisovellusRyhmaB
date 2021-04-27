@@ -169,10 +169,10 @@ public class TallennusDao implements LukuvinkkiDao {
     @Override
     public void tyhjennaTietokanta() throws SQLException {
         Connection db = DriverManager.getConnection(tietokantaosoite);
-        PreparedStatement stmt = db.prepareStatement("DROP TABLE Linkit");
+        PreparedStatement stmt = db.prepareStatement("DELETE FROM Linkit");
         stmt.execute();
 
-        PreparedStatement stmt2 = db.prepareStatement("DROP TABLE Kirjat");
+        PreparedStatement stmt2 = db.prepareStatement("DELETE FROM Kirjat");
         stmt2.execute();
 
         db.close();
