@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 import lukuvinkkisovellus.Linkki;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lukuvinkkisovellus.Kirja;
@@ -280,11 +281,15 @@ public class TallennusDao implements LukuvinkkiDao {
     }
 
     @Override
-    public void vieTiedostoon(String tiedosto) throws Exception {
+    public File vieTiedostoon() throws Exception {
         List<Lukuvinkki> jarjestelmanVinkit = this.listaaKaikki();
+        SimpleDateFormat formaatti = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        
+        Timestamp aikaleima = new Timestamp(System.currentTimeMillis());
+        File uusiTiedosto = null;
 
         try {
-            File uusiTiedosto = new File(tiedosto);
+            uusiTiedosto = new File(formaatti.format(aikaleima));
             if (!uusiTiedosto.createNewFile()) {
                 System.out.println("Tiedoston nimi on varattu");
             }
@@ -293,7 +298,8 @@ public class TallennusDao implements LukuvinkkiDao {
             e.printStackTrace();
         }
 
-        this.tallennaTiedostoon(tiedosto, jarjestelmanVinkit);
+        this.tallennaTiedostoon(formaatti.format(aikaleima), jarjestelmanVinkit);
+        return uusiTiedosto;
 
     }
 

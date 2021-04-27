@@ -1,6 +1,7 @@
 
 package lukuvinkki_dao;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import lukuvinkkisovellus.Kirja;
@@ -88,7 +89,7 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
     }
 
     @Override
-    public void vieTiedostoon(String tiedosto) throws Exception {
+    public File vieTiedostoon() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

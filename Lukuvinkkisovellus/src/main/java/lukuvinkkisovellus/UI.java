@@ -122,9 +122,7 @@ public class UI {
                     lukuvinkkiService.tuoTiedostosta(tiedostonNimi);
                     
                 } else if (komento2.equals("2")) {
-                    System.out.println("Minkä niminen tiedosto luodaan?");
-                    String tiedostonNimi = reader.nextLine();
-                    lukuvinkkiService.vieTiedostoon(tiedostonNimi);
+                    lukuvinkkiService.vieTiedostoon();
                 }
             } else if (komento.equals("8")) {
                 System.out.println("Anna hakusana: ");

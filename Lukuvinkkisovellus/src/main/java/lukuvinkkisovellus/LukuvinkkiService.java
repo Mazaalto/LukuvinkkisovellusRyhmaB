@@ -90,7 +90,7 @@ public class LukuvinkkiService {
         this.lukuvinkkiDao.tuoTiedostosta(tiedosto);
     }
     
-    public void vieTiedostoon(String tiedosto) throws Exception {
-        this.lukuvinkkiDao.vieTiedostoon(tiedosto);
+    public void vieTiedostoon() throws Exception {
+        this.lukuvinkkiDao.vieTiedostoon();
     }
 }

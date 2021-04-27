@@ -1,5 +1,6 @@
 package lukuvinkki_dao;
 
+import java.io.File;
 import java.util.List;
 import lukuvinkkisovellus.Kirja;
 import lukuvinkkisovellus.Linkki;
@@ -30,6 +31,6 @@ public interface LukuvinkkiDao {
     
     void tuoTiedostosta(String tiedosto) throws Exception;
     
-    void vieTiedostoon(String tiedosto) throws Exception;
+    File vieTiedostoon() throws Exception;
 
 }
