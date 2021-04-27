@@ -37,7 +37,7 @@ Lukuvinkit pysyvät tallessa vaikka suljet sovelluksen.
 - Asiakas voi seurata testikattavuutta ja koodin tilannetta Github Actionin avulla
 
 # Releaset
-Täältä löytyy ohjelman uusin release:[Ensimmäinen release](https://github.com/Mazaalto/LukuvinkkisovellusRyhmaB/releases/tag/1.0)
-Pääset käyttämään ohjelmaa ajamalla koneellasi jar-tiedoston komennolla java -jar Lukuvinkkisovellus.jar.  Ohjelma toimii jos olet samassa hakemistossa, jossa tiedosto on. Esim. Downloads. 
+Täältä löytyy ohjelman uusin release:[Final](https://github.com/Mazaalto/LukuvinkkisovellusRyhmaB/releases/tag/Final)
+Lataa ohjelma koneellesi. Pääset käyttämään ohjelmaa ajamalla koneellasi jar-tiedoston komennolla java -jar Lukuvinkkisovellus.jar.  Ohjelma toimii jos olet samassa hakemistossa, jossa tiedosto on. Esim. Downloads. 
 
 Linkki testikattavuusraportin [screenshottiin](https://github.com/Mazaalto/LukuvinkkisovellusRyhmaB/blob/main/Lukuvinkkisovellus/Screenshot%20from%202021-04-27%2014-11-31.png), voit myös ajaa testit komennolla ./gradlew jacocoTestReport kansiossa, jossa ohjelma sijaitsee.
