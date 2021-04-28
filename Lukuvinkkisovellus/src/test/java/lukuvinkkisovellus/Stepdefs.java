@@ -36,7 +36,7 @@ public class Stepdefs {
 
     @Then("arvon tulisi olla {int}")
     public void arvonTulisiOlla(Integer val) {
-        assertEquals(val.intValue(), lukuvinkkiDao.LukuvinkkienMaara());
+        assertEquals(val.intValue(), lukuvinkkiDao.lukuvinkkienMaara());
     }
 
     @Then("Järjestelmä palauttaa merkkijonon {string}")

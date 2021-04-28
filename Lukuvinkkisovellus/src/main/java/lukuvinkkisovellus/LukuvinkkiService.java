@@ -62,11 +62,11 @@ public class LukuvinkkiService {
     }
 
     public int getLukuvinkkienMaara() {
-        return this.lukuvinkkiDao.LukuvinkkienMaara();
+        return this.lukuvinkkiDao.lukuvinkkienMaara();
     }
 
     public int getKirjojenMaara() {
-        return this.lukuvinkkiDao.KirjojenLukumaara();
+        return this.lukuvinkkiDao.kirjojenLukumaara();
     }
 
     public void poistaLukuvinkki(Lukuvinkki lukuvinkki) throws Exception {
