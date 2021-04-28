@@ -17,9 +17,9 @@ public interface LukuvinkkiDao {
     
     void lisaaKirja(Kirja lukuvinkki) throws Exception;
     
-    int LukuvinkkienMaara();
+    int lukuvinkkienMaara();
     
-    int KirjojenLukumaara();
+    int kirjojenLukumaara();
     
     void poistaLinkki(Lukuvinkki lukuvinkki) throws Exception;
     

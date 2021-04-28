@@ -41,12 +41,12 @@ public class TallennusDaoTest {
     @Test
     //Nyt lukuvinkkien määrään lasketaan sekä kirjat että linkit
     public void lukuvinkkienMaaraOnOikea() {
-        assertEquals(4, dao.LukuvinkkienMaara());
+        assertEquals(4, dao.lukuvinkkienMaara());
     }
 
     @Test
     public void kirjojenMaaraOnOikea() {
-        assertEquals(2, dao.KirjojenLukumaara());
+        assertEquals(2, dao.kirjojenLukumaara());
     }
 
     @Test
@@ -78,7 +78,7 @@ public class TallennusDaoTest {
         dao.lisaaLinkki(lisattava);
         List<Lukuvinkki> lukuvinkit = dao.listaaKaikki();
         //nyt myös kirjat lasketaan lukuvinkkien määrään
-        assertEquals(5, dao.LukuvinkkienMaara());
+        assertEquals(5, dao.lukuvinkkienMaara());
         Lukuvinkki lukuvinkki = lukuvinkit.get(2);
         assertEquals("Vinkin otsikko: uusi vinkki, vinkin linkki: www.uusi.fi", lukuvinkki.toString());
     }
@@ -91,7 +91,7 @@ public class TallennusDaoTest {
         dao.lisaaLinkki(lisattava2);
         dao.poistaLinkki(lisattava);
         //lasketaan mukaan myös kirjat
-        assertEquals(5, dao.LukuvinkkienMaara());
+        assertEquals(5, dao.lukuvinkkienMaara());
     }
 
     @Test
@@ -102,7 +102,7 @@ public class TallennusDaoTest {
         dao.lisaaKirja(lisattava2);
         dao.poistaKirja(lisattava);
         //lasketaan mukaan myös kirjat
-        assertEquals(5, dao.LukuvinkkienMaara());
+        assertEquals(5, dao.lukuvinkkienMaara());
     }
 
     @Test
@@ -116,7 +116,7 @@ public class TallennusDaoTest {
         dao.lisaaKirja(lisattava);
         dao.poistaKirja(lisattava);
         //lasketaan mukaan myös kirjat
-        assertEquals(4, dao.LukuvinkkienMaara());
+        assertEquals(4, dao.lukuvinkkienMaara());
     }
     @Test
     public void merkkaaLuetuksiToimii() throws Exception {
@@ -124,7 +124,7 @@ public class TallennusDaoTest {
         dao.lisaaKirja(lisattava);
         dao.poistaKirja(lisattava);
         //lasketaan mukaan myös kirjat
-        assertEquals(4, dao.LukuvinkkienMaara());
+        assertEquals(4, dao.lukuvinkkienMaara());
     }
 
     @Test

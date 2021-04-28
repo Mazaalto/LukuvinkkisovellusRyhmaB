@@ -128,12 +128,12 @@ public class TallennusDao implements LukuvinkkiDao {
 
     //Vaihdetaan myöhemmin koskemaan pelkkiä linkkejä
     @Override
-    public int LukuvinkkienMaara() {
-        return KirjojenLukumaara() + LinkkienMaara();
+    public int lukuvinkkienMaara() {
+        return kirjojenLukumaara() + LinkkienMaara();
     }
 
     @Override
-    public int KirjojenLukumaara() {
+    public int kirjojenLukumaara() {
         int maara = 0;
 
         try {

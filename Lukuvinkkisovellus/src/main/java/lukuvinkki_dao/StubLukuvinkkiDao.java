@@ -29,7 +29,7 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
     }
 
     @Override
-    public int LukuvinkkienMaara() {
+    public int lukuvinkkienMaara() {
         return lukuvinkit.size();
     }
 
@@ -60,7 +60,7 @@ public class StubLukuvinkkiDao implements LukuvinkkiDao {
     }
 
     @Override
-    public int KirjojenLukumaara() {
+    public int kirjojenLukumaara() {
         return lukuvinkit.size();
     }
 

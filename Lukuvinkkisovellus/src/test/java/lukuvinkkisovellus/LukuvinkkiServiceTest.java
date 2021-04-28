@@ -28,37 +28,37 @@ public class LukuvinkkiServiceTest {
     @Test
     public void LinkinLisaysOnnistuu() throws Exception {
         lukuvinkkiService.lisaaLinkki(new Linkki("a", "v"));                
-        assertEquals(1, lukuvinkkiDao.LukuvinkkienMaara());
+        assertEquals(1, lukuvinkkiDao.lukuvinkkienMaara());
     }
     
     @Test
     public void LinkinLisaysEpaonnistuuIlmanOtsikkoa() throws Exception {
         lukuvinkkiService.lisaaLinkki(new Linkki("", "a"));
-        assertEquals(0, lukuvinkkiDao.LukuvinkkienMaara());
+        assertEquals(0, lukuvinkkiDao.lukuvinkkienMaara());
     }
     
     @Test
     public void LinkinLisaysEpaonnistuuIlmanUrlia() throws Exception {
         lukuvinkkiService.lisaaLinkki(new Linkki("a", ""));
-        assertEquals(0, lukuvinkkiDao.LukuvinkkienMaara());
+        assertEquals(0, lukuvinkkiDao.lukuvinkkienMaara());
     }
     
     @Test
     public void KirjanLisaysOnnistuu() throws Exception {
         lukuvinkkiService.lisaaKirja(new Kirja("kirja", "kirjailija", 1997, "tammi", "www.kirja.net"));
-        assertEquals(1, lukuvinkkiDao.KirjojenLukumaara());
+        assertEquals(1, lukuvinkkiDao.kirjojenLukumaara());
     }
     
     @Test
     public void KirjanLisaysEpaonnistuuIlmanOtsikkoa() throws Exception {
         lukuvinkkiService.lisaaKirja(new Kirja("", "kirjailija", 1997, "tammi", "www.kirja.net"));
-        assertEquals(0, lukuvinkkiDao.KirjojenLukumaara());
+        assertEquals(0, lukuvinkkiDao.kirjojenLukumaara());
     }
     
     @Test
     public void KirjanLisaysEpaonnistuuIlmanUrlia() throws Exception {
         lukuvinkkiService.lisaaKirja(new Kirja("kirja", "kirjailija", 1997, "tammi", ""));
-        assertEquals(0, lukuvinkkiDao.KirjojenLukumaara());
+        assertEquals(0, lukuvinkkiDao.kirjojenLukumaara());
     }
 
     @Test
@@ -89,14 +89,14 @@ public class LukuvinkkiServiceTest {
     public void LukuvinkinLisaaminenKasvattaaLukuvinkkienMaaraa() throws Exception {
         int maaraAluksi = lukuvinkkiService.getLukuvinkkienMaara();
         lukuvinkkiService.lisaaLinkki(new Linkki("otsikko1", "testiurl.com"));               
-        assertEquals(maaraAluksi + 1, lukuvinkkiDao.LukuvinkkienMaara());
+        assertEquals(maaraAluksi + 1, lukuvinkkiDao.lukuvinkkienMaara());
     }
     @Test
     public void LukuvinkinLisaaminenKasvattaaLukuvinkkienMaaraaJosLisataanMyosKirja() throws Exception {
         int maaraAluksi = lukuvinkkiService.getLukuvinkkienMaara();
         lukuvinkkiService.lisaaLinkki(new Linkki("otsikko1", "testiurl.com"));  
         lukuvinkkiService.lisaaKirja(new Kirja("kirja", "kirjailija", 1997, "tammi", "www.kirja.net"));
-        assertEquals(maaraAluksi + 2, lukuvinkkiDao.LukuvinkkienMaara());
+        assertEquals(maaraAluksi + 2, lukuvinkkiDao.lukuvinkkienMaara());
     }
     
     @Test
