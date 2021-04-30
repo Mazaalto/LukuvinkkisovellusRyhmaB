@@ -41,3 +41,4 @@ Täältä löytyy ohjelman uusin release:[Final](https://github.com/Mazaalto/Luk
 Lataa ohjelma koneellesi. Pääset käyttämään ohjelmaa ajamalla koneellasi jar-tiedoston komennolla java -jar Lukuvinkkisovellus.jar.  Ohjelma toimii jos olet samassa hakemistossa, jossa tiedosto on. Esim. Downloads. 
 
 Linkki testikattavuusraportin [screenshottiin](https://github.com/Mazaalto/LukuvinkkisovellusRyhmaB/blob/main/Lukuvinkkisovellus/Screenshot%20from%202021-04-27%2014-11-31.png), voit myös ajaa testit komennolla ./gradlew jacocoTestReport kansiossa, jossa ohjelma sijaitsee.
+
