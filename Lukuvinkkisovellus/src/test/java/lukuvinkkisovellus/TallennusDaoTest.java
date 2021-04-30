@@ -120,11 +120,13 @@ public class TallennusDaoTest {
     }
     @Test
     public void merkkaaLuetuksiToimii() throws Exception {
-        Kirja lisattava = new Kirja("a", "abc", 2021, "tammi", "www.kirjat.net");
-        dao.lisaaKirja(lisattava);
-        dao.poistaKirja(lisattava);
-        //lasketaan mukaan myös kirjat
-        assertEquals(4, dao.LukuvinkkienMaara());
+        Linkki lisattava = new Linkki("otsake", "urli.com");
+        dao.lisaaLinkki(lisattava);
+        dao.merkkaaLuetuksi(lisattava);
+
+        List<Lukuvinkki> kaikki = dao.listaaKaikkiLinkit();
+        Lukuvinkki viimeinen = kaikki.get(kaikki.size() - 1);
+        assertTrue(viimeinen.onkoLuettu());
     }
 
     @Test
