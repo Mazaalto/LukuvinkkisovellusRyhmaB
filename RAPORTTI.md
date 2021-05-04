@@ -14,14 +14,6 @@ Julia Bergman (github jullebli)
 Antti Halmetoja (github AnttiHal)
 
 
-
-
-
-Ryhmän mielestä miniprojekti oli kokonaisuutena onnistunut, opettavainen ja hyvin mielenkiintoinen. Projektin aikana opittiin paljon muun muassa gitin ja githubin käytöstä, ryhmässä tapahtuvasta sovelluskehityksestä, scrumin perusteista käytännössä ja ryhmätyöstä yleisestikin. Yhteydenpidossa käytimme Zoom-videoneuvottelupalvelua sekä Telegram-pikaviestinpalvelua. Projektin retrospektiiveissa käytimme MadSadGlad-tekniikkaa. Jokaisen sprintin jälkeen Glad-sarakkeessa olivat toimiva kommunikaatio ja hyvä työn eteneminen. Tästä voidaan päätellä, että projekti eteni pääpiirteissään hyvin. Glad-sarakkeessa mainittin myös, että apua sai aina sitä tarvittaessa. Haasteina Mad-kategoriassa mainittiin esimerkiksi lähityöskentelyn puute. Monissa koneiden konfiguraatioeroista johtuvissa ongelmissa olisi osittainen lähityöskentely ollut varmasti hyödyllistä. Sad-kategoriassa mainittiin työajan arvioinnin hankaluus. Miniprojekti oli suurimmalle osalle jäsenistä ensikosketus yhdessä tapahtuvaan strukturoituun sovelluskehitykseen, joten eri työvaiheisiin kuluvaa aikaa oli melko vaikeaa arvioida. Ajoittaisista hankaluuksista huolimatta projekti kuitenkin onnistui hyvin ja jokaisen sprintin päätteeksi tavoitteet saavutettiin. Muita sad-kategoriassa mainittuja asioita olivat muun muassa viime tippaan jätetyt asiat, yhteisien työaikojen löytämisen vaikeus, sekä jar-tiedostopaketin liian myöhäinen luonti. Onnistuimme kuitenkin korjaamaan lähes kaikki Sad-kategorian huomautukset aina seuraavassa sprintissä. Ainoastaan yhteisten työaikojen löytäminen pysyi haasteena projektin loppuun asti. Ottaen huomioon projektin keston ja viikoittaisten työtuntien pienen määrän, ei tämä kuitenkaan tunnu kovin suurelta puutteelta. Onkin oletettavaa, että asia korjaantuu kurssilla Ohjelmistotuotantoprojekti, joka on useammalla ryhmäläisellä edessä jo kesällä.
-
-
-Julian ehdotus:
-
 ### Projektin aikana kohdatut ongelmat
 
 #### Ensimmäinen sprintti
@@ -36,27 +28,20 @@ Käytimme koko projektin ajan retrospektiiveissa Mad, Sad, Glad tekniikkaa ja Fl
 
 Toisen sprintin haastavimmaksi tekniseksi ongelmaksi muodostui jarin tekeminen. Kuvittelimme sen olevan helppo homma ja suunnittelimme tekevämme sen katselmoinnin aamuna. Onneksi tiimin muitakin jäseniä saatiin paikalle auttamaan ongelman ratkomisessa ja ohjaajakin ehti auttaa. Jarissa varsinkin tiedostoon kirjoittamisessa oli haasteita.
 
-Prosessinhallinnan ja projektityöskentelyn haasteista
--laitoimme taskejä user storyjen ulkopuolelle
--User storyrien aikoja oli vaikea arvioida ja päivittää. Välillä oli epäselvää paljonko vielä menee johonkin työhön.
--mitä muuta?
+Toisessa sprntissä emme jakaneet taskeja yhtä tarkkaan kuin ensimmäisessä ja tästä tuli myös pieniä ongelmia, että mitä on vielä tekemättä ja kuka tekee mitäkin. Saimme kuitenkin lopulta kaiken tehtyä ajallaan ja demokin onnistui erittäin hyvin. User storyihin tarvittava aika oli edelleen vaikeaa arvioida ja myös backlogin päivittäminen meinasi ajoittain unohtua. Tietokannan käyttöönotto sujui kuitenkin erittäin hyvin ja jopa helpommin kuin kukaa oli uskaltanut aavistaa etukäteen. Tästä sprintistä opimme ainakin sen, että taskeja ei pitäisi jättää user storyjen ulkopuolelle, vaan jokainen taski pitäisi pyrkiä ujuttamaan johonkin storyyn. 
 
-Retro
--jarin luonti liian myöhään (sad)
--jacoco ongelmat (mad) ?
+Retrossa meillä oli samoja ilonaiheita kuin ensimmäisellä viikolla, kommunikaatio ja yhteistyö sujui hyvin. Sad osaan lisättiin ainakin jarin tekeminen liian myöhään ja jacocon kanssa säätäminen pääsi mad kategoriaan. 
 
 
 #### Kolmas sprintti
 
--Tekniset haasteet?
--Tiivis aikataulu pakoitti priorisoimaan töitä
--Edellisten sprinttien perusteella pystyi suunnittelemaan paremmin kolmannen spirtin
+Projektityöskentelyn ja prosessonhallinan kannalta tässä sprintissä osasimme jo paremmin muotoilla taskejä. Sprintin suunnittelumme oli tehokkaampaa kuin aiemmin ja nyt osasimme liittää kaikki taskit johonkin user storyyn. Työskentely tiimin kesken oli nopeampaa ja user storyt valmistuivat nopeammin. Testaaminen vei kuitenkin jälleen kerran yllättävän paljon aikaa ja se taisi olla ainoa asia, jossa hieman jäimme tavoitteestamme. Lisäksi meillä oli haasteita jatkuvan integraation kanssa. Meillä ei main branchi varsinaisesti hajonnut missään vaiheessa, mutta testikattavuus laski alle 80 % jolloin jacoco näytti punaista. Luulimmekin ensin, että joku on oikeasti hajalla, mutta lopulta asia selvisi. Myös eri branchien käyttö aiheuttivat merge coflictejä ja meillä ei ollut tarpeeksi selkeää suunnitelmaa branchien käyttöön ja se muotoutui vasta sprintin edetessä. Loppudemo oli onnistunut ja olimme tiiminä tyytyväisiä aikaansaannokseemme. 
 
-Projektityöskentelyn ja prosessonhallinan kannalta tässä sprintissä osasimme jo paremmin muotoilla taskejä. Sprintin suunnittelumme oli tehokkaampaa kuin aiemmin ja nyt osasimme liittää kaikki taskit johonkin user storyyn. Työskentely tiimin kesken oli nopeampaa ja user storyt valmistuivat nopeammin. 
+Koko ryhmä oli hieman harmissaan, että projekti loppui, oli niin huikeaa tehdä yhteistyötä muutaman viikon ajan. Kaikki olivat samaa mieltä siitä, että toisten opiskelijoiden naamojen näkeminen ja yhdessä tekeminen olivat yksi kurssin parhaista asioista mielenkiintoisen ja opettavaisen sisällön lisäksi. 
 
 ### Mitä opimme ja missä voi parantaa
 
-Ryhmän mielestä miniprojekti oli kokonaisuutena onnistunut, opettavainen ja hyvin mielenkiintoinen. Projektin aikana opittiin paljon muun muassa gitin ja githubin käytöstä, ryhmässä tapahtuvasta sovelluskehityksestä, scrumin perusteista käytännössä ja ryhmätyöstä yleisestikin. Jokaisen sprintin jälkeen Glad-kohdan alla olivat toimiva kommunikaatio ja hyvä työn eteneminen. Onnistuimme kuitenkin korjaamaan lähes kaikki Sad-kategorian huomautukset aina seuraavassa sprintissä. Ainoastaan yhteisten työaikojen löytäminen pysyi haasteena projektin loppuun asti.Tämä osoittaa että kehitimme työskentelytapojamme.
+Ryhmän mielestä miniprojekti oli kokonaisuutena onnistunut, opettavainen ja hyvin mielenkiintoinen. Projektin aikana opittiin paljon muun muassa gitin ja githubin käytöstä, ryhmässä tapahtuvasta sovelluskehityksestä, scrumin perusteista käytännössä ja ryhmätyöstä yleisestikin. Jokaisen sprintin jälkeen Glad-kohdan alla olivat toimiva kommunikaatio ja hyvä työn eteneminen. Onnistuimme kuitenkin korjaamaan lähes kaikki Sad-kategorian huomautukset aina seuraavassa sprintissä. Ainoastaan yhteisten työaikojen löytäminen pysyi haasteena projektin loppuun asti. Ottaen huomioon projektin keston ja viikoittaisten työtuntien pienen määrän, ei tämä kuitenkaan tunnu kovin suurelta puutteelta. 
 
 Monta asiaa on helpompi parantaa kun tulevissa projekteissä tuskin on näin rajallista aikataulua ja meilläkin on kokemusta enemmän. Opimme muokkaamaan backlogeja työskentelyämme paremmin tukeviksi ja suunnitteluun, refaktorointiin sekä käyttäjämukavuuteen voi käyttää enemmän aikaa. Sen opimmekin että työskentelyyn oleva aika voi olla hyvin rajallista ja kannattaa olla maltillinen asiakkaalle annetuista lupauksista toteutettavien user storyjen suhteen. Saavutimme kuitenkin jokaisessa sprintissä asettamamme tavoitteet.
 
