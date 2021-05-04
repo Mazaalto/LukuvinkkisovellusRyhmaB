@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
-import lukuvinkki_dao.LukuvinkkiDao;
-import lukuvinkki_dao.TallennusDao;
+import lukuvinkki_dao.*;
 
 public class UI {
 
