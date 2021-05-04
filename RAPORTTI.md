@@ -34,10 +34,11 @@ Käytimme koko projektin ajan retrospektiiveissa Mad, Sad, Glad tekniikkaa ja Fl
 
 #### Toinen sprintti
 
-Toisen sprintin haastavimmaksi tekniseksi ongelmaksi muodostui jarin tekeminen. Kuvittelimme sen olevan helppo homma ja suunnittelimme tekevämme sen katselmoinnin aamuna. Onneksi tiimin muitakin jäseniä saatiin paikalle auttamaan ongelman ratkomisessa ja ohjaajakin ehti auttaa.
+Toisen sprintin haastavimmaksi tekniseksi ongelmaksi muodostui jarin tekeminen. Kuvittelimme sen olevan helppo homma ja suunnittelimme tekevämme sen katselmoinnin aamuna. Onneksi tiimin muitakin jäseniä saatiin paikalle auttamaan ongelman ratkomisessa ja ohjaajakin ehti auttaa. Jarissa varsinkin tiedostoon kirjoittamisessa oli haasteita.
 
 Prosessinhallinnan ja projektityöskentelyn haasteista
 -laitoimme taskejä user storyjen ulkopuolelle
+-User storyrien aikoja oli vaikea arvioida ja päivittää. Välillä oli epäselvää paljonko vielä menee johonkin työhön.
 -mitä muuta?
 
 Retro
@@ -48,12 +49,16 @@ Retro
 #### Kolmas sprintti
 
 -Tekniset haasteet?
+-Tiivis aikataulu pakoitti priorisoimaan töitä
+-Edellisten sprinttien perusteella pystyi suunnittelemaan paremmin kolmannen spirtin
 
-Projektityöskentelyn ja prosessonhallinan kannalta tässä sprintissä osasimme jo paremmin muotoilla taskejä. Sprintin suunnittelumme oli tehokkaampaa kuin aiemmin ja nyt osasimme liittää kaikki taskit johonkin user storyyn.
+Projektityöskentelyn ja prosessonhallinan kannalta tässä sprintissä osasimme jo paremmin muotoilla taskejä. Sprintin suunnittelumme oli tehokkaampaa kuin aiemmin ja nyt osasimme liittää kaikki taskit johonkin user storyyn. Työskentely tiimin kesken oli nopeampaa ja user storyt valmistuivat nopeammin. 
 
 ### Mitä opimme ja missä voi parantaa
 
 Ryhmän mielestä miniprojekti oli kokonaisuutena onnistunut, opettavainen ja hyvin mielenkiintoinen. Projektin aikana opittiin paljon muun muassa gitin ja githubin käytöstä, ryhmässä tapahtuvasta sovelluskehityksestä, scrumin perusteista käytännössä ja ryhmätyöstä yleisestikin. Jokaisen sprintin jälkeen Glad-kohdan alla olivat toimiva kommunikaatio ja hyvä työn eteneminen. Onnistuimme kuitenkin korjaamaan lähes kaikki Sad-kategorian huomautukset aina seuraavassa sprintissä. Ainoastaan yhteisten työaikojen löytäminen pysyi haasteena projektin loppuun asti.Tämä osoittaa että kehitimme työskentelytapojamme.
 
 Monta asiaa on helpompi parantaa kun tulevissa projekteissä tuskin on näin rajallista aikataulua ja meilläkin on kokemusta enemmän. Opimme muokkaamaan backlogeja työskentelyämme paremmin tukeviksi ja suunnitteluun, refaktorointiin sekä käyttäjämukavuuteen voi käyttää enemmän aikaa. Sen opimmekin että työskentelyyn oleva aika voi olla hyvin rajallista ja kannattaa olla maltillinen asiakkaalle annetuista lupauksista toteutettavien user storyjen suhteen. Saavutimme kuitenkin jokaisessa sprintissä asettamamme tavoitteet.
+
+Tiimi kehittyi viestinnässä jatkuvasti ja saavutimme tavoitteet aikataulussa.
 
