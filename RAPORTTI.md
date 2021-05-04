@@ -1,6 +1,6 @@
 ## Miniprojektin raportti
 
-Ryhmän jäsenet:
+**Ryhmän jäsenet:**
 
 
 Matias Aalto-Setälä (github mazaalto)
@@ -12,6 +12,7 @@ Eevi Bengs (github eevib)
 Julia Bergman (github jullebli) 
 
 Antti Halmetoja (github AnttiHal)
+
 
 
 ### Projektin aikana kohdatut ongelmat
